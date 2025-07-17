@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        form : 사용자로부터 특정정보를 받아 서버로 전달하는데 사용되는 태그
+        action Attribute : 전달받는 서버 URI
+        method Attribute : 서버로 요청하는 방식
+            - GET        : 사용자 요청 정보를 Query String으로 전달(Default)
+            - POST       : 사용자 요청 정보를 Request body(Payload)로 전달
+            - PUT        :
+            - PATH       :
+            - DELETE     : 
+    -->
+
+    <!-- name 파라미터 명 -->
+    <form action="/test.jsp" method="post">
+        <div>
+            <h1>회원가입</h1>
+        </div>
+        <div>
+            <label>아이디</label>
+            <input name="userid" type="text">
+            <a href="javascript:void(0)">중복 확인</a>
+        </div>
+        <div>
+            <label>비밀번호</label>
+            <input name="password" type="password">
+        </div>
+        <div>
+            <label>비밀번호 확인</label>
+            <input name="re-password" type="password">
+        </div>
+        <div>
+            <label>이름</label>
+            <input name="username" type="text">
+        </div>
+        <div>
+            <label>우편번호</label>
+            <input name="zipcode" type="text">
+            <a href="javascript:void(0)">검색</a>
+        </div>
+        <div>
+            <label>기본 주소</label>
+            <input name="addr1" type="text">
+        </div>
+        <div>
+            <label>상세 주소</label>
+            <input name="addr2" type="text">
+        </div>
+        <div>
+            <label>휴대전화</label>
+            <select>
+                <option value="" selected>010</option>
+                <option value="">011</option>
+            </select>
+            <input type="text">
+            <input type="text">
+        </div>
+        <div>
+            <label>연락처</label>
+            <select>
+                <option value="" selected>053</option>
+                <option value="">055</option>
+                <option value="">02</option>
+            </select>
+            <input type="text">
+            <input type="text">
+        </div>
+        <div>
+            <label>이메일</label>
+            <input type="text">
+            <select>
+                <option value="" selected>@naver.com</option>
+                <option value="">@gamil.com</option>
+                <option value="">@outlook.co.kr</option>
+            </select>
+        </div>
+        <div>
+            <label>생년월일</label>
+            <input name="birth" type="radio"> 양
+            <input name="birth" type="radio"> 음
+        </div>
+        <div>
+            <select>
+                <option value="" selected>2000</option>
+                <option value="" >2001</option>
+                <option value="" >2002</option>
+            </select>
+            <select>
+                <option value="" selected>06</option>
+                <option value="" >07</option>
+                <option value="" >08</option>
+            </select>
+            <select>
+                <option value="" selected>11</option>
+                <option value="" >12</option>
+                <option value="" >16</option>
+            </select>
+        </div>
+        <hr>
+        <div>
+            <input id="email-recv" type="checkbox">
+            <label for="email-recv">이메일 수신에 동의 ??</label>
+        </div>
+        <div>
+            <input id="sms-recv" type="checkbox">
+            <label for="sms-recv">문자 수신에 동의 ??</label>
+        </div>
+        <div>
+            <input type="submit" value="회원가입">
+        </div>
+    </form>
+
+</body>
+</html>

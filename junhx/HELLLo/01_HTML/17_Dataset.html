@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div data-username="user1234" data-a="AAA">계정명</div>
+    <div data-address="대구">주소</div>
+    <div data-phone="01022223333">연락처</div>
+
+
+    <script>
+        const Els = document.querySelectorAll('div');
+        Els.forEach(el=>{console.log(el.dataset)})
+
+    </script>
+</body>
+</html>

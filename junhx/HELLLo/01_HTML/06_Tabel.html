@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            text-align: center;
+            min-width: 55px;
+            min-height: 55px;
+            border: 1px solid;
+        }
+    </style>
+    <!-- 기본 -->
+    <table border="1" width="400px">
+    <caption>기본 테이블</caption>
+        <tr>
+            <th>열제목 1</th>
+            <th>열제목 2</th>
+            <th>열제목 3</th>
+        </tr>
+        <tr>
+            <td>Value1</td>
+            <td>Value2</td>
+            <td>Value3</td>
+        </tr>
+        <tr>
+            <td>Value1</td>
+            <td>Value2</td>
+            <td>Value3</td>
+        </tr>
+        <tr>
+            <td>Value1</td>
+            <td>Value2</td>
+            <td>Value3</td>
+        </tr>
+    </table>
+    <hr>
+
+    <!-- ROWSPAN: 수직 병합, 병합시킬 땐 하나 이상 원래의 행을 유지 -->
+    <table>
+        <caption>ROWSPAN</caption>
+        <tr>
+            <td rowspan="2">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td rowspan="4">4</td>
+        </tr>
+        <tr>
+            <!-- <td>5</td> -->
+            <td>6</td>
+            <td rowspan="3">7</td>
+            <!-- <td>8</td> -->
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <!-- <td>11</td> -->
+            <!-- <td>12</td> -->
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <!-- <td>15</td> -->
+            <!-- <td>16</td> -->
+        </tr>
+    </table>
+    <hr>
+
+    <!-- Colspan : 수평 병합 -->
+    <table>
+        <caption>COLSPAN</caption>
+        <tr>
+            <td colspan="2">1</td>
+            <!-- <td>2</td> -->
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td colspan="4">9</td>
+            <!-- <td>10</td>
+            <td>11</td>
+            <td>12</td> -->
+        </tr>
+        <tr>
+            <td>13</td>
+            <td colspan="3">14</td>
+            <!-- <td>15</td>
+            <td>16</td> -->
+        </tr>
+    </table>
+
+</body>
+</html>

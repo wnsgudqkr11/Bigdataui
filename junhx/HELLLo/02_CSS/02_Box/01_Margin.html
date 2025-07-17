@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{margin: 0;}
+        div{
+            width: 300px;height: 300px;background-color: orange;
+        }
+        .d1{
+            /* all direction 동일 설정 */
+            /* margin: 20px; */
+
+            /* top, bottom   left right */
+            /* margin: 20px 40px; */
+
+            /* top:10px, right:20px, bottom:30px, left:20px(right와 동일) */
+            /* margin: 10px 20px 30px; */
+
+            /* top:10px, right:20px, bottom:30px, left:40px */
+            /* margin: 10px 20px 30px 40px; */
+            
+            margin-top:10px;
+            margin-left:20px;
+            margin-bottom:30px;
+            margin-right : 40px;
+        }
+
+        .d2{
+            margin: 0 auto;
+        } 
+        .parent{
+            width: 80vw;
+            height: 250px;
+            margin: 20px auto;
+        }
+        .son{
+            background-color: royalblue;
+            width: 150px;
+            height: 150px;
+        }
+        /* 가운데 맞추기_01 (공식)*/
+        /* 상위는 relative 하위는 absolute  : 위에 있는 부모가 움직여도 계속 중간에 있음*/
+        .p1{
+            position: relative;
+        }
+        .s1{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        /* 가운데 맞추기_02 (공식)*/
+        .p2{
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <div class="d1">hello world</div>
+    <div class="d2">hello world</div> -->
+
+    <!-- 로고,이미지 유리 -->
+    <div class="parent p1">
+        <div class="son s1"></div>
+        <div class="son"></div>
+    </div>
+    <!-- 배치하는거 -->
+    <div class="parent p2">
+        <div class="son s2"></div>
+        <div class="son"></div>
+    </div>
+</body>
+</html>

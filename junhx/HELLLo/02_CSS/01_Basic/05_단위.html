@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{height: 100px;margin: 10px;background-color: orange;}
+    </style>
+</head>
+
+
+<body>
+    <!-- px : 고정크기 -->
+    <div style="width: 500px;">Helloo world</div>
+    <div style="width: 500px;">
+        <div style="width: 300px;background-color: royalblue;"></div>
+    </div>
+    <!-- % : 가변 크기, 상위 태그를 기준  -->
+    <div style="width: 500px;">           <!-- 바디의 50%  -->
+        <div style="width: 50%;background-color: royalblue;"></div>
+    </div>
+    <!-- vw,vh : 가변 크기, 뷰포트를 기준  -->
+    <div style="width: 500px;">           <!-- 바디의 50%  -->
+        <div style="width: 50vw;background-color: royalblue;"></div>
+    </div>
+</body>
+</html>

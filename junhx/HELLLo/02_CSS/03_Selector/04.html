@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         *{margin-left:30px;}
+        .c1{border : 1px solid red;}
+        .c2{border : 1px solid orange;}
+        .c3{border : 1px solid green;}
+        /*  
+            ~ : 동위선택자(같은 Depth의 하위 모든 선택자)
+            + : 동위선택자(같은 Depth의 하위 1개 선택자)
+        */
+        .c1>p{
+            color: violet;
+        }
+        /* 코드 줄 기준으로 밑으로 모든 형제 태그 */
+        .c2~p{
+            background-color: orange;
+        }
+        /* 코드 줄 기준으로 밑에서 제일 가까운 형제 태그 */
+        .c2+p{
+            width: 200px;
+        }
+        /* 자손 :모든 태그 */
+        .c2 p{}
+    </style>
+
+</head>
+<body>
+    
+    <div class="c1">
+        <p>1 HELLO WORLD</p>
+        <div class="c2">
+            <p>2 HELLO WORLD</p>
+            <div class="c3">
+                <p>3 HELLO WORLD</p>
+                <p>4 HELLO WORLD</p>
+                <p>5 HELLO WORLD</p>
+            </div>
+            <p>6 HELLO WORLD</p>
+            <p>7 HELLO WORLD</p>
+        </div>
+        <p>8 HELLO WORLD</p>
+        <p>9 HELLO WORLD</p>
+    </div>
+    
+</body>
+</html>

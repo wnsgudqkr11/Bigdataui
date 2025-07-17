@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 전체 선택자 */
+        *{box-sizing: border-box;}
+        /* 요소 선택자(element) */
+        div{
+            width: 150px;
+            height: 150px;
+            border: 1px solid;
+            margin: 10px;
+        }
+        /* id선택자 : 유일한 요소 지정(중복 지정 불가, JS에서 오류) */
+        #id_01{
+            background-color: red;
+        }
+        /* class 선택자 : 특정 태그 그룹지정 */
+        .c1{
+            background-color: royalblue;
+        }
+        /* 그룹 선택자 : , */
+        #id_01,
+        .c1{
+            border-radius: 50px;    
+        }
+    </style>
+</head>
+<body>
+    <div class="c1"></div>
+    <div id="id_01"></div>
+    <div></div>
+    <div class="c1"></div>
+    <div>
+        <p class="c1">Hello world</p>
+    </div>
+</body>
+</html>

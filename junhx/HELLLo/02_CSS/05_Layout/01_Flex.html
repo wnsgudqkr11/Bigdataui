@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*  */
+        *{box-sizing: border-box;}
+        body{
+            margin : 0;
+        }
+        .wrapper{
+            width : 1280px;
+            height : 1080px;
+            margin : 0 auto;
+            border : 1px solid;
+            padding : 10px;
+        }
+        .parent{
+            height : 150px;
+            border : 1px solid;
+            display: flex;
+            /* 수평배치 center,right,left,space-between,space-evenly space-around */
+            justify-content: center;
+            /* item간 여백지정없는 설정시 gap option 사용가능  */
+            gap: 0px;
+            /* 수직배치 start,end,center,flex-start,flex-end */
+            align-items:center;
+            /* 방향지정 : row , column, row-reverse, column-reverse*/
+            flex-direction: row;
+            margin-bottom: 50px;
+        }   
+
+        .parent>.child{
+            width : 120px;
+            /* height : 40px; */
+            border : 1px solid;
+        }
+        .parent2{
+            border: 1px solid;
+            display: flex;
+            flex-wrap: wrap;
+
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .parent2>.child2{
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="parent">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+            <div class="child">5</div>
+        </div>
+        <!--  -->
+        <div class="parent2">
+            <div class="child2">1</div>
+            <div class="child2">2</div>
+            <div class="child2">3</div>
+            <div class="child2">4</div>
+            <div class="child2">5</div>
+            <div class="child2">6</div>
+            <div class="child2">7</div>
+            <div class="child2">8</div>
+            <div class="child2">9</div>
+            <div class="child2">10</div>
+            <div class="child2">11</div>
+            <div class="child2">12</div>
+            <div class="child2">13</div>
+            <div class="child2">14</div>
+            <div class="child2">15</div>
+            <div class="child2">16</div>
+            <div class="child2">17</div>
+            <div class="child2">18</div>
+            <div class="child2">19</div>
+            <div class="child2">20</div>
+        </div>
+    </div>
+    
+
+
+</body>
+</html>

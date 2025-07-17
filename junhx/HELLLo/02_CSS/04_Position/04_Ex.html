@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* common */
+        *{box-sizing: border-box;}
+        ul{padding: 0;margin: 0;list-style: none;}
+        a{text-decoration: none;color: black;}
+        body{
+            margin: 0;
+            padding: 0;
+            font-size: .8rem;
+        }
+
+        /* main page */
+
+        /* header */
+        .wrapper{}
+        .wrapper>header{}
+        .wrapper>header>.top-header{}
+        .wrapper>header>nav{
+            height: 50px;
+            /* background-color: orange; */
+            border-bottom: 1px solid lightblue;
+        }
+
+        /* nav's menu */
+        .wrapper>header>nav>ul.main-menu{
+            display: flex;
+            justify-content: center;
+            /* gap: 20px; */
+
+            height: 100%;
+        }
+        .wrapper>header>nav>ul.main-menu>li{
+            height: 100%;
+            line-height: 50px;
+            /* border: 1px solid;    */
+            padding: 0 15px;
+            
+            position: relative;
+        }
+        .wrapper>header>nav>ul.main-menu>li>a{
+            display: block;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu{
+           /* border: 1px solid;  */
+           padding: 0 15px;
+           padding-bottom: 10px;
+
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 140px;
+            border-bottom: 1px solid lightblue;
+            border-left: 1px solid lightblue;
+            border-right: 1px solid lightblue;
+
+            display: none;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu>li{
+            max-height: 35px;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu>li>a{
+    
+        }
+
+        /* ?? */
+        .wrapper>header>nav>ul.main-menu>li:hover>.sub-menu{
+            display: block;
+        }
+
+        /* main */
+        .wrapper>main{}
+        .wrapper>main>section{}
+
+        /* footer */
+        .wrapper>footer{}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="top-header"></div>
+            <nav>
+                <ul class="main-menu">
+                    <li>
+                        <a href="javascript:void(0)">ALL</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">패키지</a></li>
+                            <li><a href="javascript:void(0)">신발</a></li>
+                            <li><a href="javascript:void(0)">의류</a></li>
+                            <li><a href="javascript:void(0)">키즈</a></li>
+                            <li><a href="javascript:void(0)">콜라보레이션</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Best</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">패키지</a></li>
+                            <li><a href="javascript:void(0)">신발</a></li>
+                            <li><a href="javascript:void(0)">의류</a></li>
+                            <li><a href="javascript:void(0)">키즈</a></li>
+                            <li><a href="javascript:void(0)">콜라보레이션</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">충무공 이순신 시리즈</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">패키지</a></li>
+                            <li><a href="javascript:void(0)">신발</a></li>
+                            <li><a href="javascript:void(0)">의류</a></li>
+                            <li><a href="javascript:void(0)">키즈</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section></section>
+        </main>
+        <footer></footer>
+    </div>
+</body>
+</html>

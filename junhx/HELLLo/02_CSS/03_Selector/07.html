@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 
+            ::before : content영역 앞에 표시할 스타일
+            ::after : content영역 뒤에 표시할 스타일
+        */
+
+        div{
+            width:400px;
+            height : 200px;
+            border : 1px solid;
+            background-color: orange;
+            text-align:center;
+            line-height:200px;
+        }
+        /* content 꼭 쓰기 */
+        .d1::before{
+            content: '🤣';
+        }
+        .d1::after{
+            content: '😎';
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        hello world
+    </div>
+</body>
+</html>

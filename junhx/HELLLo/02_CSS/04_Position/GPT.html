@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>position 속성 예제</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      height: 2000px;
+      margin: 40px;
+    }
+
+    .container {
+      position: relative;
+      border: 2px dashed gray;
+      height: 200px;
+      margin-bottom: 50px;
+    }
+
+    .box {
+      width: 160px;
+      height: 50px;
+      padding: 10px;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .static {
+      position: static;
+      background-color: #999;
+    }
+
+    .relative {
+      position: relative;
+      top: 20px;
+      left: 30px;
+      background-color: #4CAF50;
+    }
+
+    .absolute {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      background-color: #2196F3;
+      z-index: 2;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #FF5722;
+      z-index: 10;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      background-color: #9C27B0;
+    }
+
+    h2 {
+      margin-top: 80px;
+    }
+
+    /* 배경박스 시각적 차이 강조용 */
+    .bg-box {
+      height: 100px;
+      background: #f2f2f2;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS position 속성 비교 (차이 강조)</h1>
+
+  <div class="bg-box">⬅️ 이 박스를 기준으로 비교하세요</div>
+
+  <h2>1. static</h2>
+  <div class="container">
+    <div class="box static">static</div>
+  </div>
+
+  <h2>2. relative (자기 자리에서 이동)</h2>
+  <div class="container">
+    <div class="box relative">relative<br><small>자리 유지됨</small></div>
+  </div>
+
+  <h2>3. absolute (문서 흐름 벗어남)</h2>
+  <div class="container">
+    <div class="box absolute">absolute<br><small>공간 차지 안 함</small></div>
+    <div class="box static" style="background: #e0e0e0; margin-top: 60px;">일반 박스</div>
+  </div>
+
+  <h2>4. fixed (브라우저 고정)</h2>
+  <div class="box fixed">fixed<br><small>항상 화면에 고정</small></div>
+
+  <h2>5. sticky (스크롤 시 고정)</h2>
+  <div class="container">
+    <div class="box sticky">sticky<br><small>스크롤하면 고정</small></div>
+  </div>
+
+</body>
+</html>

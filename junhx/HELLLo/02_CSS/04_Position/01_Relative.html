@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{box-sizing: border-box;}
+        body{margin: 0;padding: 0;}
+        div{
+            width: 50px;
+            height: 50px;
+            border: 1px solid;
+            background-color: orange;
+        }
+        /* static에서 이동 불가 */
+        /* position은 기준점이 중요 */
+        div:nth-child(1){
+            position: relative;
+            left: 50px;
+            top: 10px;
+            /* right: 0;
+            bottom: 0; */
+        }
+        div:nth-child(2){
+            position: relative;
+            left: -10px;
+            top: -10px;
+        }
+        div:nth-child(3){
+            position: relative;
+            /* 정중앙 */
+            left: calc(50vw - 25px);
+            top: calc(25vh + 25px);
+        }
+        /* 정중앙 맞추기 - absolute로 하기 */
+        div:nth-child(4){
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</body>
+</html>

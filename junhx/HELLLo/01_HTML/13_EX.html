@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    .phone-input-box {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 300px;
+      padding: 10px;
+    }
+
+    .country-select {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .country-select select {
+      border: none;
+      font-size: 14px;
+      background: transparent;
+      appearance: none;
+      outline: none;
+      padding-left: 5px;
+    }
+
+    /* .phone-input {
+      display: flex;
+      align-items: center;
+    } */
+
+    .phone-input input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      flex: 1;
+      padding: 5px;
+    }
+
+    /* 아이콘 예시용 (글로벌 아이콘이나 휴대폰 아이콘) */
+    .icon {
+      margin-right: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+    <form action="/myex.jsp" method="post">
+
+        <div>
+            <input name="userid" type="text" placeholder="아이디">
+        </div>
+
+        <div>
+            <input name="userpw" type="password" placeholder="비밀번호">
+        </div>
+        <div>
+            <label></label>
+            <input name="userpw" type="text" placeholder="[선택]이메일주소 (비밀번호 찾기 등 본인 확인용)">
+        </div>
+
+        <div>
+            <input name="username" type="text" placeholder="이름">
+        </div>
+        <div>
+            <input name="userpw" type="password" placeholder="생년월일 8자리">
+        </div>
+
+        <!-- <div class="form_item gender" id="divGender">
+            <ul class="gender_list" id="lsitGender">
+                <li class="radio_item">
+                    <input type="radio" id="gender1" name="gender" value="M" class="blind">
+                    <label for="gender1">남자</label>
+                </li>
+                <li class="radio_item">
+                    <input type="radio" id="gender2" name="gender" value="F" class="blind">
+                    <label for="gender2">여자</label>
+                </li>
+                <li class="radio_item">
+                    <input type="radio" id="gender3" name="gender" value="O" class="blind">
+                    <label for="gender3">선택안함</label>
+                </li>
+            </ul>
+        </div> -->
+        
+
+        
+        <div>
+            <input type="radio" id="gender1" name="gender">
+            <label for="gender1">남자</label>
+        </div>
+                
+        <div>
+            <input type="radio" id="gender2" name="gender">
+            <label for="gender2">여자</label>
+        </div>
+        <div>
+            <input type="radio" id="gender3" name="gender">
+            <label for="gender3">선택안함</label>
+        </div>
+               
+
+        <!-- <div>
+            <select>
+                <option value="" selected>대한민국 +82</option>
+                <option value="">캐나다 +1</option>
+                <option value="">미국 +1</option>
+            </select>
+            <input type="tell">
+        </div> -->
+
+
+        <div class="phone-input-box">
+            <div class="country-select">
+                <span class="icon">🌐</span> 
+                    <select>
+                        <option value="+82" selected>대한민국 +82</option>
+                        <option value="+1">미국 +1</option>
+                        <option value="+81">일본 +81</option>
+                        <!-- 필요한 국가 추가 -->
+                    </select>
+            </div>
+            <div class="phone-input">
+                <span class="icon">📱</span>
+                <input type="tel" placeholder="휴대전화번호">
+            </div>
+        </div>
+
+        
+        <div>
+            <input type="submit" value="인증요청">
+        </div>
+    </form>
+</body>
+</html>

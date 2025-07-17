@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{height: 3000px;}
+        .btn{
+            display: block;
+            width: 120px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px;
+            border-radius: 10px;
+            background-color: tomato;
+            color: white;
+            box-shadow: 3px 3px 3px lightblue;
+            opacity: .5;
+            transition: 1s;
+        }
+        .btn:hover{
+            opacity: 1;
+        }
+
+        .btn-1{background-color: rgb(32, 216, 155);}
+        .btn-2{background-color: rgb(224, 126, 6);}
+        .btn-3{background-color: brown;}
+    </style>
+</head>
+
+    <body>
+        <a class="btn btn-1" href="./02_Basic.html">문서이동</a>
+        <a class="btn btn-2" href="./03_List.html" target="_blank">문서이동</a>
+        <a class="btn btn-3" href="./04_Ex.html" target="_self">문서이동</a>
+        <a class="btn" href="https://naver.com">Naver</a>
+        <hr>
+
+        <a href="https://www.daum.net/" target="frm1">DAUM으로 이동</a>
+        <!-- inline -->
+        <iframe src="" frameborder="1" width="400px" height="400px" name="frm1"></iframe>
+
+        <hr>
+        <!-- javascript:void(0) : 아직 구현 전인 a태그 기본 값 -->
+        <a href="javascript:void(0)">기능1</a>
+        <a href="javascript:void(0)">기능2</a>
+    </body>
+</html>

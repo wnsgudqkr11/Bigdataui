@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 자식요소 선택 : '>' -->
+
+    <!-- div>ul>li -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+
+    <!-- div>p>ul>li -->
+    <div>
+        <p>
+            <ul>
+                <li></li>
+            </ul>
+        </p>
+    </div>
+
+    <!-- 형제노드 : '+' -->
+    <!-- div>ol+ul -->
+    <div>
+        <ol></ol>
+        <ul></ul>
+    </div>
+
+    <!-- div>p+div+span -->
+    <div>
+        <p></p>
+        <div></div>
+        <span></span>
+    </div>
+
+    <!-- div>ul>li>a+ul "ul>li>a+ul" -- 서브메뉴 구조 !!  <div> -->
+    <div>
+        <ul>
+            <li>
+                <a href=""></a>
+                <ul></ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 상위태그 이동 : '^' -->
+
+    <!-- div>ul>li^p -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+        <p></p>
+    </div>
+
+    <!-- 메뉴구조 만들기 -->
+
+    <!-- div>ul>li>a+ul>li*4 -->
+    <div>
+        <ul>
+            <li>
+                <a href="">메인메뉴</a>
+                <ul>
+                    <li>서브메뉴1</li>
+                    <li>서브메뉴2</li>
+                    <li>서브메뉴3</li>
+                    <li>서브메뉴4</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- div>ul>li*5>a{$.MAINMENU}+ul>li*4>a{$.SUBMENU} -->
+    <div>
+        <ul>
+            <li>
+                <a href="">1.MAINMENU</a>
+                <ul>
+                    <li><a href="">1.SUBMENU</a></li>
+                    <li><a href="">2.SUBMENU</a></li>
+                    <li><a href="">3.SUBMENU</a></li>
+                    <li><a href="">4.SUBMENU</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">2.MAINMENU</a>
+                <ul>
+                    <li><a href="">1.SUBMENU</a></li>
+                    <li><a href="">2.SUBMENU</a></li>
+                    <li><a href="">3.SUBMENU</a></li>
+                    <li><a href="">4.SUBMENU</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">3.MAINMENU</a>
+                <ul>
+                    <li><a href="">1.SUBMENU</a></li>
+                    <li><a href="">2.SUBMENU</a></li>
+                    <li><a href="">3.SUBMENU</a></li>
+                    <li><a href="">4.SUBMENU</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">4.MAINMENU</a>
+                <ul>
+                    <li><a href="">1.SUBMENU</a></li>
+                    <li><a href="">2.SUBMENU</a></li>
+                    <li><a href="">3.SUBMENU</a></li>
+                    <li><a href="">4.SUBMENU</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">5.MAINMENU</a>
+                <ul>
+                    <li><a href="">1.SUBMENU</a></li>
+                    <li><a href="">2.SUBMENU</a></li>
+                    <li><a href="">3.SUBMENU</a></li>
+                    <li><a href="">4.SUBMENU</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 클래스 선택자 : '.' -->
+    <!-- .c1 -->
+    <div class="c1"></div>
+
+    <!-- ID 선택자 : '#' -->
+    <!-- #wrapper -->
+    <div id="wrapper"></div>
+
+    <!-- 속성추가 : '[]' -->
+    <!-- ol[type='I']>li*4{TEST $} -->
+    <ol type="I">
+        <li>TEST 1</li>
+        <li>TEST 2</li>
+        <li>TEST 3</li>
+        <li>TEST 4</li>
+    </ol>
+
+    <!-- 탬플릿 문서 구조 만들기 -->
+
+    <!-- .wrapper>header>.top-header+nav^main>section^footer -->
+     <div class="wrapper">
+        <header>
+            <div class="top-header"></div>
+            <nav></nav>
+        </header>
+        <main>
+            <section></section>
+        </main>
+        <footer></footer>
+     </div>
+
+
+
+
+
+</body>
+</html>

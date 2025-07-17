@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* common */
+        *{box-sizing: border-box;}
+        ul{padding: 0;margin: 0;list-style: none;}
+        a{text-decoration: none;color: black;}
+        body{margin: 0;padding: 0;}
+
+        /* main page */
+
+        /* header */
+        .wrapper{}
+        .wrapper>header{}
+        .wrapper>header>.top-header{}
+        .wrapper>header>nav{
+            height: 50px;
+        }
+
+        /* nav's menu */
+        .wrapper>header>nav>ul.main-menu{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            
+            /* 중요 포인트!! */
+            position: relative;
+            
+            height: 100%;
+            background-color: orange;
+        }
+        .wrapper>header>nav>ul.main-menu>li{
+            /* border: 1px solid; */
+            height: 100%;
+            padding: 0 20px;
+            background-color: royalblue;
+            width: 150px;
+        }
+        .wrapper>header>nav>ul.main-menu>li>a{
+            display: block;
+            height: 100%;
+            line-height: 50px;
+            color: white;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu{
+            width: 100%;
+            max-width: 150px;
+            height: 100%;
+            
+            /* 중요 포인트!! */
+            /* 위치는 새로 잡기 */
+            position: absolute;
+            left: 150px;
+            top: 0;
+
+            display: none;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu>li{
+            background-color: green;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+        }
+        .wrapper>header>nav>ul.main-menu>li>ul.sub-menu>li>a{
+            display: block;
+
+            color: white;
+            text-align: center;
+        }
+
+        /* ?? */
+        .wrapper>header>nav>ul.main-menu>li:hover>.sub-menu{
+            display: block;
+        }
+
+        /* main */
+        .wrapper>main{}
+        .wrapper>main>section{}
+
+        /* footer */
+        .wrapper>footer{}
+    </style>
+</head>
+<body>
+    <!-- .wrapper>header>.top-header+nav^main>section^footer -->
+     <div class="wrapper">
+        <header>
+            <div class="top-header"></div>
+            <nav>
+                <!-- ul.main-menu>li*4>a[href="javascript:void(0)"]{$_MAINMENU}+ul.sub-menu>li*5>a[href="javascript:void(0)"]{$_SUBMENU} -->
+                <ul class="main-menu">
+                    <li>
+                        <a href="javascript:void(0)">1_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">1_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">2_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">3_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">4_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">5_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">2_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">12_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">22_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">32_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">42_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">52_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">3_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">13_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">23_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">33_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">43_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">53_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">4_MAINMENU</a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)">14_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">24_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">34_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">44_SUBMENU</a></li>
+                            <li><a href="javascript:void(0)">54_SUBMENU</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section></section>
+        </main>
+        <footer></footer>
+     </div>
+</body>
+</html>
