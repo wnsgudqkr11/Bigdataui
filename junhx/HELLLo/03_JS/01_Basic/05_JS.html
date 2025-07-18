@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>BTN</button>
+    <a>BTN2</a>
+    <input type="submit" value="BTN3">
+    <hr>
+
+    <div class="btn" style="width: 80px;padding: 10px;border: 1px solid;">DIV's BTN</div>
+
+    <script>
+        const btnEl = document.querySelector('.btn');
+        let is
+        // btnEl.addEventListener('이벤트종류', '수행로직')
+        btnEl.addEventListener('click', ()=>{
+            // alert('클릭됨');
+
+            if(state)
+            {
+                // btnEl.style.background-color='black';
+                btnEl.style.backgroundColor='black';
+                btnEl.style.color='white';
+                state = false;
+            }
+            else
+            {
+                btnEl.style.backgroundColor='white';
+                btnEl.style.color='black';
+                state = true;
+            }
+        })
+    </script>
+</body>
+</html>

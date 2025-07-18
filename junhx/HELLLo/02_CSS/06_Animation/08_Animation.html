@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section{
+            width: 500px;
+            height: 500px;
+            /* background-color: aquamarine; */
+            /* justify-content: center;
+            align-items: center; */
+            margin-left: 500px;
+            margin-top: 200px;
+        }
+
+        div{
+            width: 400px;
+            height: 40px;
+            background-color: bisque;
+            border: 1px solid;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        div:nth-child(1){
+            animation-name: moving1;
+            animation-duration: 2s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+        div:nth-child(2){
+            animation-name: moving2;
+            animation-duration: 2s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+        div:nth-child(3){
+            animation-name: moving3;
+            animation-duration: 2s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes moving1{
+            form{margin-left: 0%;}
+            to{margin-left: 100%;}
+        }
+        @keyframes moving2{
+             from{margin-top: 0%;}
+            to{margin-top: 100%;}
+        }
+        @keyframes moving3{
+            form{margin-top: 0; margin-left: 0;}
+            to{margin-top: 100%; margin-left: 100%;}
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div>loveyaa</div>
+        <div>loveyaa</div>
+        <div>loveyaa</div>
+    </section>
+</body>
+</html>

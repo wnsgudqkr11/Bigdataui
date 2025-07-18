@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <label>국어점수 : </label>
+        <input class="korea" type="text" name="국어"><button onclick="myScore.save국어()">저장</button>
+    </div>
+    <div>
+        <label>영어점수 : </label>
+        <input class="english" type="text" name="영어"><button onclick="myScore.save영어()">저장</button>
+    </div>
+    <div>
+        <label>수학점수 : </label>
+        <input class="math" type="text" name="수학"><button onclick="myScore.save수학()">저장</button>
+    </div>
+    <hr />
+    총합 : <div class="sum-block"></div> <button onClick="myScore.sum()">확인</button><br />
+    평균 : <div class="avg-block"></div> <button onClick="myScore.avg()">확인</button><br />
+
+    <script>
+
+        const myScore = {
+            국어: 0,
+            영어: 0,
+            수학: 0,
+            총점: 0,
+            평균: 0,
+            save국어: function () {
+                const 국어input = document.querySelector('.korea'); // ✅ 클래스로 선택
+                console.log('국어점수 : ', 국어input.value);
+
+                this.국어 = Number(국어input.value); // ✅ 점수를 객체에 숫자로 저장
+            },
+
+            save영어: function () {
+                const 영어input = document.querySelector('.english');
+                console.log('영어점수 : ', 영어input.value);
+
+                this.영어 = Number(영어input.value);
+            },  
+            save수학: function () {
+                const 수학input = document.querySelector('.math');
+                console.log('수학점수 : ', 수학input.value);
+
+                this.수학 = Number(수학input.value);
+            },
+
+            sum: function () {
+                // 국어, 영어, 수학 점수 더해서 총점에 저장
+                this.총점 = this.국어 + this.영어 + this.수학;
+
+                // 결과 보여주기
+                const sumBlock = document.querySelector('.sum-block');
+                sumBlock.innerHTML = this.총점;
+            },
+
+            avg: function () {
+                // 총점을 3으로 나눠서 평균에 저장
+                this.평균 = this.총점 / 3;
+
+                // 결과 보여주기
+                const avgBlock = document.querySelector('.avg-block');
+                avgBlock.innerHTML = this.평균.toFixed(2); // 소수 둘째자리까지 표시
+            },
+
+        }
+    </script>
+</body>
+
+</html>

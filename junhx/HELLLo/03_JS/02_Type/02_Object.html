@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="poppi.sound()">뽀삐야 짖어라</button>
+    <hr>
+    <h1>My Cow</h1>
+    소유자 : <input id="owner"><br>
+    등급 : <input id="level"><br>
+    크키 : <input id="height"><br>
+    <button id="save">저장하기</button>
+    <hr>
+    <button onclick="MYCow.accel()">가속</button>
+    <button onclick="MYCow.break()">감속</button>
+    <button onclick="MYCow.toString()">상태확인</button>
+    <h2>대시보드</h2>
+    <div id="gauge" style="transition: .5s;height: 50px;width: 0;border: 1px solid;background-color: orange;"></div>
+    <script>
+        // MYCow : {}
+        const MYCow = {
+            //속성
+            owner : "",
+            level : "",
+            height : "",
+            speed : 0,
+            anger : 100,
+            //기능
+            accel:function(){
+                this.speed = this.speed+10;
+                console.log("채찍질완료 현재 속도: ", this.speed);
+
+                const gaugeEl = document.getElementById('gauge');
+                gaugeEl.style.width=`${this.speed * 2}px`;
+            },
+            break:function(){
+                this.speed = this.speed-10;
+                console.log("아우 불쌍해 현재 속도: ", this.speed);
+
+                const gaugeEl = document.getElementById('gauge');
+                gaugeEl.style.width=`${this.speed * 2}px`;
+            },
+            
+            toString:function(){
+                console.log(this.owner, this.level, this.height, this.speed, this.anger);
+            }
+        }
+
+        const saveBtn = document.getElementById('save')
+        saveBtn.addEventListener('click',()=>{
+            const ownerInputEl = document.getElementById('owner')
+            const levelInputEl = document.getElementById('level')
+            const heightInputEl = document.getElementById('height')
+            // console.log('save btn clicked...',ownerInputEl.value,levelInputEl.value,heightInputEl.value);
+            MYCow.owner = ownerInputEl.value;
+            MYCow.level = levelInputEl.value;
+            MYCow.height = heightInputEl.value;
+            console.log('save btn clicked..myCowInfo : ', MYCow)
+        })
+
+
+
+
+        // Object : 사물 < 객체 (주체를 제외한 모든 대상)
+        const poppi =
+        {
+            // 속성
+            name : "뽀삐",
+            kind : "믹스견",
+            age : 1,
+            weight : 8.4,
+            // 기능
+            sound:function(){
+                alert(this.name+"이(가) 와ㅏㄹㄹ아오알ㄹ왈ㄹ랄 짖습니다 ~!")
+            },
+            toString:function(){
+                console.log(this.name, this.kind, this.age, this.weight);
+            }
+        }
+
+        console.log(poppi);
+        console.log(poppi.name);
+        console.log(poppi.kind);
+        console.log(poppi.age);
+        console.log(poppi.weight);
+        // poppi.sound();
+        poppi.name = "토리";
+        poppi.toString();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            width: 400px;
+            height: 40px;
+            background-color: orange;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid black;
+        }
+        div:nth-child(1){
+            animation-name: moving1;
+            /* transition과 유사 */
+            animation-duration: 2s;
+            /* 애니메이션 반복 횟수 */
+            animation-iteration-count: infinite;
+            /* 방향 설정 */
+            animation-direction: alternate;
+        }
+        div:nth-child(2){
+             animation-name: moving2;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes moving1{
+            from{margin-left: 100%;}
+            to{margin-left: 0%;}
+        }
+
+        @keyframes moving2{
+            from{margin-top: 100%;}
+            to{margin-top: 0%;}
+        }
+    </style>
+</head>
+<body>
+    <div>Helloworld</div>
+    <div>Helloworld</div>
+</body>
+</html>
