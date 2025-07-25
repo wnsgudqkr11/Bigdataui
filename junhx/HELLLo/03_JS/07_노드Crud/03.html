@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            transition: .5s;
+            cursor: pointer;
+            /* width로 잡으면 글씨가 늘어나면 깨짐 > 최소 width만 */
+            min-width: 100px;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn--style1{background-color: red;color: white;}
+        .btn--style2{background-color: orange;color: white;}
+        .btn--style3{background-color: yellow;color: white;}
+        .btn--style4{background-color: green;color: white;}
+        .btn--style5{background-color: blue;color: white;}
+        .btn--style6{background-color: navy;color: white;}
+        .btn--style7{background-color: purple;color: white;}
+        .btn--style8{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <div class="btn">1_Button</div>
+    <div class="btn">2_Button</div>
+    <div class="btn">3_Button</div>
+    <div class="btn">4_Button</div>
+    <div class="btn">5_Button</div>
+    <div class="btn">6_Button</div>
+    <div class="btn">7_Button</div>
+    <div class="btn">8_Button</div>
+
+    <script>
+        const btnEls = document.querySelectorAll('.btn');
+        btnEls.forEach((btnEl,idx)=>{
+            console.log(idx,btnEl);
+
+            //마우스가 버튼 영역 안으로 진입했을 때
+            btnEl.addEventListener("mouseover",(e)=>{
+                btnEl.classList.add(`btn--style${idx+1}`);
+            })
+
+            //마우스가 버튼 영역 밖으로 나갔을 때
+            btnEl.addEventListener("mouseleave",(e)=>{
+                btnEl.classList.remove(`btn--style${idx+1}`);
+            })
+        })
+    </script>
+</body>
+</html>

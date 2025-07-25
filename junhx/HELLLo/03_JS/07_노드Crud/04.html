@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .item{
+            display: flex;
+            justify-content: left;
+            gap: 10px;
+            border: 1px solid;
+            padding: 5px;
+        }
+        .item>.left{
+            border: 1px solid;
+            position: relative;
+            min-width: 200px;
+        }
+        .item>.left>input{
+            width: 100%;
+            outline: none;
+            border: 0;
+            height: 95%;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            left: 0; top: 0;
+        }
+        .item>.right{
+            border: 1px solid;
+        }
+        .item>.right>a{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <input class="insert-value" type="text"> | <a href="javascript:void(0)" class="btn bnt-insert">입력</a>
+    <hr>
+    <div class="container">
+        <!-- <div class="item">
+            <div class="left">
+                <input type="text" readonly>
+            </div>
+            <div class="right">
+                <a href="javascript:void(0)">
+                <span class="material-symbols-outlined">
+                    delete
+                </span>
+            </a>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded',()=>{
+            //전역 스코프 요소 검색
+            const insertEl = document.querySelector('.insert-value');
+            const insertBtnEl = document.querySelector('.bnt-insert');
+            const containerEl = document.querySelector('.container');
+
+            // 이벤트 처리
+            insertBtnEl.addEventListener('click',()=>{
+                const text = insertEl.value;
+                // container에 item 추가
+                // 노드가 생성된 후 입력된 값 비우기
+                createNode(text);
+                insertEl.value = "";
+            })
+            // 노드 추가
+            function createNode(text){
+                // 유효성 체크! (했다 치고 ~)
+
+                // 새 노드 생성
+                const itemEl = document.createElement('div');
+                const leftEl = document.createElement('div');
+                const inputEl = document.createElement('input');
+
+                const rightEl = document.createElement('div');
+                const aEl = document.createElement('a');
+                const spanEl = document.createElement('span');
+
+                // 클래스 적용
+                itemEl.className = 'item';
+                leftEl.className = 'left';
+                rightEl.className = 'right';
+                spanEl.className = 'material-symbols-outlined';
+
+                // 속성 추가
+                inputEl.setAttribute('readonly', true)
+
+                // 데이터 삽입
+                spanEl.innerHTML='delete';
+                inputEl.value=text;
+
+                // 노드간 연결
+                leftEl.appendChild(inputEl);
+                aEl.appendChild(spanEl);
+                rightEl.appendChild(aEl);
+
+                itemEl.appendChild(leftEl);
+                itemEl.appendChild(rightEl);
+                containerEl.appendChild(itemEl);
+            }
+        })
+    </script>
+</body>
+</html>

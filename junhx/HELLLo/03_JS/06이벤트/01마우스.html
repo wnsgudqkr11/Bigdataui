@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            border: 1px solid;
+        }
+
+        div.d4 {
+            width: 500px;
+            height: 400px;
+            border: 5px dashed gray;
+            color: gray;
+            position: relative;
+        }
+
+        div.d4::after {
+            content: '+';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -110px;
+            bottom: 0;
+            margin: auto;
+            width: 20px;
+            height: 20px;
+            font-size: 5rem;
+            font-weight: 600;
+            /* background-color: red; */
+        }
+        .preview{
+            width:150px;
+            min-height:400px;
+            border : 1px solid;
+            position:absolute;
+            left:530px;
+            bottom:145px;
+            overflow-y: auto;
+
+            display:flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+        }   
+        .preview>img{
+            width:100%;
+            height:100px;
+            object-fit: cover;
+        }
+        .preview::-webkit-scrollbar{
+            display:none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="d1"></div>
+    <hr />
+    <div class="d2"></div>
+    <hr />
+    <div class="d3"></div>
+    <hr />
+    <div class="d4"></div>
+    <div class="preview"></div>
+    <hr />
+
+    <script>
+        // 클릭이벤트
+        var cnt = 0;
+        const d1El = document.querySelector('.d1');
+        d1El.addEventListener("click", (e) => {
+            console.log("clicked...", e.target);
+            d1El.innerHTML = `<h1>${++cnt}</h1>`;
+        });
+
+        //클릭이벤트 + 클로저 상태관리
+        function clickHandler() {
+            //상태
+            let cnt = 0;
+            function addCnt(node) {
+                cnt++;
+                console.log("addCnt...", cnt);
+                node.innerHTML = `<h1>${cnt}</h1>`;
+            }
+
+            return addCnt;
+        }
+
+        const addCnt = clickHandler();
+        const d2El = document.querySelector('.d2');
+        d2El.addEventListener("click", (e) => {
+            console.log("clicked...", e.target);
+            addCnt(d2El);
+        });
+
+        /*  
+            mouseenter  : 마우스 포인터가 특정영역내로 진입시
+            mouseover   : 마우스 포인터가 특정영역내에 머무를시
+            mouseleave  : 마우스 포인터가 특정영역밖으로 나갈때
+            click       : 마우스 1회 클릭
+            dblclick    : 마우스 2회 클릭
+            contextmenu : 마우스 우클릭
+        */
+        const d3El = document.querySelector('.d3');
+        //    d3El.addEventListener('mouseenter',()=>{console.log('mouseEnter....'); d3El.innerHTML=`<h1>MOUSEENTER</h1>`});
+        d3El.addEventListener('mouseleave', () => { d3El.innerHTML = `<h1>MOUSELEAVE</h1>` });
+        d3El.addEventListener('mouseover', () => {
+            console.log('mouseover....');
+            d3El.innerHTML = `<h1>MOUSEOVER</h1>`
+        });
+        d3El.addEventListener('dblclick', () => { d3El.innerHTML = `<h1>MOUSEDBLCLICK</h1>` });
+        d3El.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            d3El.innerHTML = `<h1>MOUSE우클릭</h1>`
+        });
+        document.addEventListener('contextmenu', (e) => { e.preventDefault(); })
+
+
+        /*
+            dragstart   :   드래그 시작(마우스를 끌어당길때의 시작점)
+            drag        :   드래그 중
+            dragenter   :   드래그가 대상 영역 위로 이동시(요소가 드랍의 대상이 될때)
+            dragover    :   드래그가 대상 영역 위에 있는 동안(요소가 드랍의 대상이 될때)
+            dragleave   :   드래그가 대상 영역에서 벗어날때(요소가 드랍의 대상이 될때)
+            dragend     :   드래그 종료
+            drop        :   드랍(끌어온 마우스의 왼쪽PUSH상태->손을 뗀경우)
+        */
+
+        const d4El = document.querySelector('.d4');
+        d4El.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            console.log('dragenter...',);
+        });
+        d4El.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            console.log('dragover...');
+            d4El.style.border = "5px dashed lightgray";
+            d4El.style.color = "lightgray";
+        });
+        d4El.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            d4El.style.border = "5px dashed gray";
+            d4El.style.color = "gray";
+        });
+        d4El.addEventListener('dragend', (e) => { e.preventDefault(); });
+       
+
+        //유효성 검사 함수
+        function isValid(file){
+            //type이 image/* 인지
+            if(!file.type.startsWith('image/')){
+                alert("이미지 파일만 업로드 가능합니다.");
+                return false;
+            }
+            //file size 
+            
+            if(file.size >= (1024*1024*1)){
+                alert("최대 허용 파일 크기는 1MB입니다.");
+                return false;
+            }
+
+            //true/false
+            return true;
+        }
+        d4El.addEventListener('drop', (e) => {
+            e.preventDefault();
+            d4El.style.border = "5px dashed gray";
+            d4El.style.color = "gray";
+            // console.log('drop', e);
+            // console.log('drop', e.target);
+            // console.log('drop', e.dataTransfer);
+            // console.log('drop', e.dataTransfer.files);
+            // console.log('drop', e.dataTransfer.files[0]);
+            const files = e.dataTransfer.files;
+            console.log(files);
+
+            for(let i=0;i<files.length;i++){
+                const file = files[i];
+                //유효성 검증
+                if(!isValid(file)){
+                    return ;
+                }
+                
+                //이미지 PREVIEW 
+                const previewEl = document.querySelector('.preview');
+                const newImageEl = document.createElement('img'); //img태그생성
+                newImageEl.src=URL.createObjectURL(file);
+                previewEl.prepend(newImageEl);
+
+            }
+
+            
+
+         
+        });
+
+
+    </script>
+
+</body>
+
+</html>

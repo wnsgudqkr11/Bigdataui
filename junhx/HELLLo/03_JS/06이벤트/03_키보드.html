@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    KEYUP : <input id="input1"><br>
+    <p id="p1"></p>
+    <hr>
+    KEYDOWN : <input id="input2"><br>
+    <p id="p2"></p>
+    <hr>
+    KEYPRESS : <input id="input3"><br>
+    <p id="p3"></p>
+    <hr>
+
+    <script>
+        // KEYUP       : 키보드가 올라올 때(눌렀다가 때는 순간) (대소문자 구별 X)
+        const keyupEl = document.querySelector('#input1')
+        const p1El = document.querySelector('#p1')
+        keyupEl.addEventListener("keyup",(e)=>{
+            // console.log("keyup...", e);
+            console.log("keyup...", e.key);
+            console.log("keyup...", e.keyCode);
+            if(e.keyCode==13){
+                //input value의 값을 p1El안에 넣기 !
+                const value = keyupEl.value;
+                p1El.innerHTML+=value+"<br>";
+                keyupEl.value="";
+            }
+        })
+
+        // KEYDOWN     : 키보드가 내려갈 때(누르는 순간)
+        const keydownEl = document.querySelector('#input2')
+        const p2El = document.querySelector('#p2')
+        keydownEl.addEventListener("keydown",(e)=>{
+            console.log('keydown...',e);
+        })
+
+        // KEYPRESS    : 키보드를 계속 누를 때 (제어문자(ex shift)인식 하지 않는다, 영문대소문자 구별 가능)
+        const keypressEl = document.querySelector('#input3')
+        const p3El = document.querySelector('#p3')
+        keypressEl.addEventListener("keypress",(e)=>{
+            console.log('keypress...', e);
+        })
+    </script>
+</body>
+</html>

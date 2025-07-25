@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul>
+        <li>1_LIST</li>
+        <li id="li2">2_LIST</li>
+        <li class="item">3_LIST</li>
+        <li>4_LIST</li>
+        <li id="li5">5_LIST</li>
+        <li>6_LIST</li>
+        <li class="item">7_LIST</li>
+        <li class="item">8_LIST</li>
+    </ul>
+
+    <script>
+        // 노드탐색
+        // id
+        const li2El = document.getElementById('li2');
+        // 스타일 바꾸기 방법1 
+        li2El.style.fontSize='24px';
+        // 스타일 바꾸기 방법2 (훨씬 더 넓은 범위로 쓰임)
+        li2El.setAttribute("style","color:red;background-color:black");
+        // selector
+        const itemEl_2 = document.querySelector('#li2');
+        li2El.style.width = '200px';
+
+        // 제일 첫 번째 item만 선택
+        const itemEl = document.querySelector('.item');
+        itemEl.style.color='green';
+        itemEl.style.fontSize='2rem';
+
+        // 모든 item 선택
+        const itemEls = document.querySelectorAll('.item');
+        console.log(itemEls);
+        itemEls.forEach((el)=>{
+            el.style.fontWeight="900";
+            el.style.backgroundColor="orange";
+        });
+        // tagName
+        let liEls = document.getElementsByTagName('li');
+        console.log(liEls);
+        // 유사 배열이기 때문에 바로 배열 함수를 쓸 수 없다 !! 에러 뜰 거임
+        // Array.from(유사배열) : 유사배열 -> 배열 변환
+        liEls = Array.from(liEls);
+        liEls.forEach((el)=>{
+            el.style.fontSize="4rem";
+            el.style.color="blue";
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        호이스팅
+        변수와 함수의 선언이 코드 실행전에 메모리에 미리 저장되는 현상
+        function 예약어 사용시 호이스팅 처리됨
+        var 예약어 사용시 호이스팅 처리됨 
+        cf) 변수지정 : let , var  / 상수지정 : const 
+        */
+        //---------------------------
+        //변수 호이스팅 확인
+        //---------------------------
+        // a=10;
+        // console.log('a',a);
+        // var a;
+        
+        // b=10;
+        // console.log('b',b);
+        // let b;
+        //---------------------------
+        //함수 호이스팅 확인
+        //---------------------------
+        h1();
+        function h1(){
+            console.log("HELLO WORLD");
+        }
+
+        h2();
+        const h2=()=>{
+            console.log("HELLO WORLD-2");
+        }
+        // var변수는 가급적 사용은 지양(사용하지 않는게 좋음)
+        // function 은 목적에 따라 사용여부 결정(처음에 만든 효과를 주고싶으면 사용 - )
+        // function 은 기본으로 이름부여도 가능하다(익명함수 or 이름부여된 함수 선택가능)
+        // 화살표함수(()=>{}) 는 기본적으로 익명함수로 처리된다  
+    </script>
+
+
+</body>
+</html>

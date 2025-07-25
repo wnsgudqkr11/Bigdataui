@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 콜백함수(CALL BACK)
+        // 함수를 호출하는 시점이 바뀌어진 형태의 함수
+        // 기존방식 : 사용자(개발자)가 함수를 직접정의 -> 정의된 함수를 호출(CALL)하여 결과를 반환받는 방식
+        // CALLBACK: 콜백함수에 인자로 로직이 담긴 함수를(함수주소) 전달하여 콜백함수로부터 처리된 결과를
+        // 반환받는 방식
+
+        // //일반함수
+        // function func(n1, n2) {
+        //     console.log("func(n1,n2)...call!");
+        //     return n1 + n2;
+        // }
+        // const v1 = func(10,20); //call-by-value //값(value)전달을 통한 함수 직접 실행(call)
+        // console.log("v1",v1);
+
+        // //콜백함수
+        // function callBackFunc(n1,n2,logic){
+        //     console.log('callBackFunc....start...');
+        //     const v =  logic(n1,n2);
+        //     console.log("v",v);
+        //     console.log('callBackFunc....start...');
+        // }
+
+        // callBackFunc(100,200,func);
+        // console.log("--------------------------");
+        // callBackFunc(100,200,(a,b)=>{return a*b;});
+
+
+        //Callback함수로 Map 만들기
+        const arr = [
+            { "id": "111", "name": "티모", age: 555, "addr": "대구" },
+            { "id": "222", "name": "렝가", age: 333, "addr": "인천" },
+            { "id": "333", "name": "워윅", age: 222, "addr": "부산" },
+            { "id": "444", "name": "문도박사", age: 111, "addr": "울산" },
+            { "id": "555", "name": "이즈리얼", age: 99, "addr": "창원" }
+        ]
+
+        function customMap(array, func) {
+            //array == arr
+            //func = (item)=>{return {"id":item.id, "name":item.name}  }
+            let newArray = []
+            for (let i = 0; i < array.length; i++) {
+                const item = array[i]; //0 index {} , 1 index {} , 2 index {}...
+                const newItem = func(item);
+                newArray.push(newItem);
+            }
+            return newArray;
+        }
+
+        const arr02 = customMap(arr, (item) => { return { "id": item.id, "name": item.name } })
+        console.log(arr02);
+
+        //Clousure  + Callback
+        function customMap2(array) {
+            let newArray = []   //state
+
+            //inner Function
+            function map(func) {
+                for (let i = 0; i < array.length; i++) {
+                    const item = array[i]; //0 index {} , 1 index {} , 2 index {}...
+                    const newItem = func(item);
+                    newArray.push(newItem);
+                }
+                return newArray;
+            }
+            return {"map":map};
+        }
+        const arr03 = 
+        customMap2(arr).map( (item)=>{return {"id":item.id,"age":item.age} } )
+        
+        console.log(arr03);
+        //console.log(customMap2(arr))
+        
+        
+    </script>
+</body>
+
+</html>

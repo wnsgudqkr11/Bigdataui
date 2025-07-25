@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    INPUT EVENT : <input id="input1"><br>
+    <p id="p1"></p>
+    <hr>
+    COMPOSITIONSTART EVENT : <input id="input2"><br>
+    <p id="p2"></p>
+    <hr>
+    COMPOSITIONUPDATE EVENT : <input id="input3"><br>
+    <p id="p3"></p>
+    <hr>
+    COMPOSITIONEND EVENT : <input id="input4"><br>
+    <p id="p4"></p>
+    <hr>
+    <script>
+        //input             : 텍스트 입력이 완료될때 발생(한글포함)
+        const inputEl = document.querySelector('#input1')
+        const p1El = document.querySelector('#p1')
+        inputEl.addEventListener('input', (e) => {
+            console.log('input', e)
+            console.log('input', e.data)
+            p1El.innerHTML = e.data;
+        })
+        //compositionstart  : 한글 조합 시작시 발생
+        const compositionstartEl = document.querySelector('#input2')
+        const p2El = document.querySelector('#p2')
+        compositionstartEl.addEventListener('compositionstart', (e) => {
+            console.log('compositionstart', e)
+            console.log('compositionstart', e.target.value)
+            p2El.innerHTML = e.data;
+        })
+        //compositionupdate : 한글 조합 중 발생(현재 조합 상태를 확인)
+        const compositionupdateEl = document.querySelector('#input3')
+        const p3El = document.querySelector('#p3')
+        compositionupdateEl.addEventListener('compositionupdate', (e) => {
+            console.log('compositionupdate', e)
+            console.log('compositionupdate', e.target.value)
+            p3El.innerHTML = e.data;
+        })
+        //compositionend    : 한글 조합 완료시 발생(완성된 글자 확인)
+        const compositionendEl = document.querySelector('#input4')
+        const p4El = document.querySelector('#p4')
+        compositionendEl.addEventListener('compositionend', (e) => {
+            console.log('compositionend', e)
+            console.log('compositionend', e.target.value)
+            p4El.innerHTML = e.data;
+        })
+
+    </script>
+    
+</body>
+</html>

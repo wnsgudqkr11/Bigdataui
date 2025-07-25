@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ECMA6 이전
+        // 인자 o 리턴 o
+        function sum1(n1,n2)
+        {
+            return n1+n2;
+        }
+        const v1 = sum1(100,200);   //함수 실행 Call(Call-by-Value)
+        console.log("sum1...",v1);
+        // 인자 o 리턴 x
+        function sum2(n1,n2)
+        {
+            console.log('sum2...',n1+n2);
+        }
+        sum2(200,300)
+        // 인자 x 리턴 o
+        function sum3()
+        {
+            const n1=111;
+            const n2=222;
+            return n1+n2;
+        }    
+        const v3 = sum3();   
+        console.log("sum3...",v3); 
+        // 인자 x 리턴 x
+        
+        function sum4()
+        {
+            const n1 = 100;
+            const n2 = 200;
+            console.log("sum4...",n1+n2);
+        }
+
+        // ECMA6 이후 ()=>{}
+        const f1=(n1,n2)=>{return n1+n2;}
+        const f2=(n1,n2)=>{console.log(n1+n2); }
+        const f3=()=>{return 100;}
+        const f4=()=>{}
+
+        f2(100,200);
+
+    
+        // 인자의 개수 ? 무제한 (how : 가변인자... 사용)
+        const f5=(n1,n2, ...args)=>{
+            console.log('n1',n1)
+            console.log('n2',n2)
+            console.log('args',args)
+        }
+        f5(100,200,300,400,500,600,700,800,900);
+
+        // 반환값의 개수? 1개 -> 여러개 return 시 object 사용!
+        const f6=()=>{
+            return {
+                // 속성
+                n1 : 100,
+                n2 : 200,
+                // 기능
+                sum : function(){return this.n1+this.n2;}
+            }
+        }
+        const v20 = f6();
+        console.log(v20.sum());
+
+    </script>
+</body>
+</html>

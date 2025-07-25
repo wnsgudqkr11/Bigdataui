@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="./js/중구맛집.js"></script>
+</head>
+<body>
+    
+    <script>
+        // 
+        console.log("ALL DATA",중구맛집);
+        //
+        const datas = 중구맛집.data;
+        console.log("datas",datas);
+
+        //한식맛집만 필터링 console.log
+        const 한식맛집Datas = datas.filter((item)=>{return item.FD_CS=='한식'});
+        console.log("한식맛집",한식맛집Datas);
+
+        //일식 필터링 -> 상호명(BZ_NM),메뉴(MNU),주소(GNG_CS)만 추출해서 새로운 배열로 재구성(map)
+        const 일식맛집Datas = datas.filter((item)=>{return item.FD_CS=='일식'})
+                                  .map((item)=>{
+                                    item={"BZ_NM":item.BZ_NM,"MNU":item.MNU,"GNG_CS":item.GNG_CS}
+                                    return item;
+                                });
+        console.log("일식맛집",일식맛집Datas);
+
+    </script>
+
+</body>
+</html>

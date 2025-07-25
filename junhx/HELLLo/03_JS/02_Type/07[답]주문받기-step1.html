@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/주문받기.css">
+
+    <script src="./js/중구맛집.js"></script>
+    <script>
+        const 중구맛집_data = 중구맛집.data;
+        console.log("중구맛집All : " ,중구맛집_data);
+    </script>
+</head>
+
+<body>
+
+    <div class="show-block search-block">
+        <span style="font-size:.7rem">step-1 js에서 상호명선택 - 배열함수 forEach</span>
+        <div class="category-select-block">
+            <select name="category" id="">
+                <option value="all" selected>전체</option>
+                <option value="한식">한식</option>
+                <option value="일식">일식</option>
+                <option value="중식">중식</option>
+                <option value="양식">양식</option>
+            </select>
+        </div>
+        <h1>상호명검색</h1>
+        <form name="form1" onsubmit="return false">
+            <div class="item">
+                <label>상호명 선택: </label>
+                <select class="select-restorant">
+                    <!-- <option value=""></option> -->
+                </select>
+            </div>
+            <div>
+                <button>검색</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="show-block order-input-block">
+        <span style="font-size:.7rem">step-2 상호명 선택시 활성화(object생성 및 저장 및 노드CRUD)</span>
+        <h1>주문 입력</h1>
+        <form name="form2" onsubmit="return falses">
+            <div class="item">
+                <label>주문번호 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>상호명 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>메뉴명 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>가격 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>수량 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div>
+                <button>주문하기</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <hr />
+    <div class="show-block order-result-block">
+        <span style="font-size:.7rem">주문요청시 추가되는 항목들(object생성 및 저장 및 노드CRUD)</span>
+        <h1>주문 확인</h1>
+        <div class="items">
+            <div class="item">
+                <label>주문번호 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>메뉴명 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>가격 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>수량 : </label>
+                <input type="text" name="주문번호" />
+            </div>
+            <div class="item">
+                <label>지불금액</label>
+                <input type="text" name="주문번호" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 사전작업
+
+        //---------------------------------------
+        // step-1 - 상호명 선택하기 채우기
+        //---------------------------------------
+        const selectRestorantEl = document.querySelector('.select-restorant');
+        console.log(selectRestorantEl)
+        //  
+        중구맛집_data.forEach((item)=>{
+            //새노드생성
+            const option =  document.createElement("option");
+            //option에 상호명 저장
+            option.innerHTML=item.BZ_NM;
+            //Select의 마지막 노드(마지막자식노드)로 연결
+            selectRestorantEl.appendChild(option);
+        })
+
+        // step-2
+
+        // 
+
+        // step-3
+
+        // 
+
+ 
+    </script>
+</body>
+
+</html>
