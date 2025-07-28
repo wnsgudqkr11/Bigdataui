@@ -53,10 +53,10 @@
             </div>
             <div class="right">
                 <a href="javascript:void(0)">
-                <span class="material-symbols-outlined">
-                    delete
-                </span>
-            </a>
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </a>
             </div>
         </div> -->
     </div>
@@ -71,11 +71,26 @@
             // 이벤트 처리
             insertBtnEl.addEventListener('click',()=>{
                 const text = insertEl.value;
+                // !isVaild 유효하지 않다면 리턴, if문이 한 줄일 때 {}안 써도 됨
+                if(!isVaild(text))
+                    return;
+
                 // container에 item 추가
                 // 노드가 생성된 후 입력된 값 비우기
                 createNode(text);
                 insertEl.value = "";
             })
+            insertEl.addEventListener('keydown',(e)=>{
+                console.log(e);
+                if(e.keyCode == 13){
+                    const text = insertEl.value;
+                    if(!isVaild(text))
+                    return;
+                createNode(text);
+                insertEl.value = "";
+                }
+            });
+
             // 노드 추가
             function createNode(text){
                 // 유효성 체크! (했다 치고 ~)
@@ -95,12 +110,21 @@
                 rightEl.className = 'right';
                 spanEl.className = 'material-symbols-outlined';
 
-                // 속성 추가
+                // 속성 추가 (속성 추가는 setAttribute 기억하기)
                 inputEl.setAttribute('readonly', true)
+                aEl.setAttribute('href','javascript:void(0)');
 
                 // 데이터 삽입
                 spanEl.innerHTML='delete';
                 inputEl.value=text;
+
+                // 이벤트 추가
+                aEl.addEventListener('click',(e)=>{
+                    const itemEl = e.target.parentNode.parentNode.parentNode;
+                    itemEl.remove();
+                    // parentNode 부모 노드 선택
+                    // .remove() 노드 삭제하기
+                });
 
                 // 노드간 연결
                 leftEl.appendChild(inputEl);
@@ -110,6 +134,23 @@
                 itemEl.appendChild(leftEl);
                 itemEl.appendChild(rightEl);
                 containerEl.appendChild(itemEl);
+            }
+
+            // 유효성 검증 함수
+            function isVaild(text){
+                // /^ / > 정규표현 시작
+                const regex = /^[0-9]/;
+                // 공백여부 확인
+                if(text.trim() === '' || text.trim() === null){
+                    // trim()을 쓰는 이유 앞뒤 공백을 제거하기 위해
+                    alert("내용을 입력하세요");
+                    return false;
+                }
+                if(regex.test(text)){
+                    alert("첫번째는 숫자를 입력할 수 없습니다");
+                    return false;
+                }
+                return true;
             }
         })
     </script>

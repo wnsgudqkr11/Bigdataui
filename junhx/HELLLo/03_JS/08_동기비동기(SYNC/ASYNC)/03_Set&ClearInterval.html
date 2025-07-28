@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="start()">반복_예약실행</button>
+    <button onclick="stop()">반복_예약취소</button>
+    <hr>
+    <div class="d1"></div>
+
+
+    <script>
+        let id = null;
+        let cnt = 0;
+
+        const start = ()=>{
+            const d1El = document.querySelector('.d1');
+            id = setInterval(()=>{
+                d1El.innerHTML = `SETINTERVAL RESULT..${++cnt}`;
+                //왜 백ㅊ틱
+            },1000);
+            console.log('id', id);
+        }
+
+        const stop = ()=>{
+            clearInterval(id);
+        }
+
+    </script>
+</body>
+</html>

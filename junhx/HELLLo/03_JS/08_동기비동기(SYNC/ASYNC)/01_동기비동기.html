@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 메인 스레드에서의 동작 확인
+        for(let i = 0; i <10 ; i++){
+            console.log("main thread... for_1..",i);
+        }
+        console.log("for_1 종료...!");
+
+        // 비동기 처리(스레드를 분할 처리 - JS에서는 실제로 스레드를 분할할 수는 없다)
+        setTimeout(()=>{
+            for(let i = 0; i <10 ; i++){
+            console.log("Async thread... for_1..",i);
+        }
+        console.log("for_2 종료...!");
+        },5);
+        
+        for(let i = 0; i <10 ; i++){
+            console.log("main thread... for_1..",i);
+        }
+        console.log("for_3 종료...!");
+    </script>
+</body>
+</html>
