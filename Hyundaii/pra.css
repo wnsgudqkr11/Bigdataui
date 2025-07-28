@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    background-color: #111;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============== header ================= */
+
+header{
+    height: 80px;
+    width: auto;
+    background-color: antiquewhite;
+}
+
+
+/* ============== main ================= */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+
+main {
+    background-color: aliceblue;
+    height: 100vh;
+    width: 100%;
+}
+
+.top {
+    background-color: #e4dcd3;
+    width: 100%;
+    height: 360px;
+}
+
+.path {
+    border: 1px solid;
+    width: 1200px;
+    height: 90px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.path>li {
+    padding: 0 14px;
+
+}
+
+.top-content {
+    background-color: rgba(241, 237, 233, 0.7);
+    width: 100;
+    height: 270px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-content>h1 {
+    color: black;
+    margin: 0;
+    font-size: 58px;
+}
+
+.top-content>p {
+    margin-top: 40px;
+    font-family: "HyundaiSansTextKR";
+    font-size: 16px;
+    letter-spacing: -.4px;
+    color: black;
+    line-height: normal;
+    font-weight: 500;
+}
+
+
+
+
+
+
+.main-box {
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    padding: 40px 60px;
+    background-color: #1a1a1a;
+    gap: 40px; /* 위아래 간격 */
+}
+
+.main-flex {
+    display: flex; /* 가로 정렬 */
+    justify-content: center;
+    gap: 40px;
+}
+
+
+.region-box,
+.status-box,
+.model-box {
+    background-color: #111;
+    padding: 20px;
+    border: 1px solid #333;
+    width: 250px;
+}
+
+.region-box select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+.status-box .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.status-box .tabs button {
+    flex: 1;
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.status-box .tabs button.active {
+    background-color: #007aff;
+}
+
+.status-box .graph {
+    display: flex;
+    gap: 10px;
+    height: 150px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.graph .bar {
+    background-color: #555;
+    width: 40px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.model-box {
+    text-align: center;
+}
+
+.model-box .model-icon {
+    font-size: 50px;
+    margin: 20px 0;
+}
+
+.model-box button {
+    padding: 10px 20px;
+    background-color: #002aff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.result-section {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 60px;
+  line-height: 1.6;
+}
+
+.notice.small {
+  font-size: 13px;
+  color: #6f94c5;
+}
+
+.result-title {
+  font-size: 24px;
+  margin: 30px 0 15px;
+  font-weight: bold;
+}
+
+.result-box {
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  color: #aaa;
+}
+
+.disclaimer {
+  font-size: 14px;
+  list-style: none;
+  padding-left: 0;
+  color: #ccc;
+}
+
+.disclaimer li {
+  margin-bottom: 10px;
+}
+
+.disclaimer .blue {
+  color: #2a9fff;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
