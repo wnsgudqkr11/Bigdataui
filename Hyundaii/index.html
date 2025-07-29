@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전기차 · 수소차 구매보조금 조회 | 현대자동차 - 현대닷컴 | 대한민국 대표 자동차회사 hyundai.com</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -31,34 +32,56 @@
         <div class="container">
             <section class="main-box">
                 <div class="main-flex">
-                    <!-- 왼쪽: 지역 선택 -->
                     <div class="region-box">
                         <h3>구매 지역을 선택하세요.</h3>
-                        <label>시/도</label>
-                        <select>
-                            <option>서울</option>
-                        </select>
-                        <label>시/군/구</label>
-                        <select>
-                            <option>서울특별시</option>
-                        </select>
+
+                        <div class="select-box">
+                            <div class="label-row">
+                                <label>시/도</label>
+                                <button class="ev-button" onclick="openModal()">EV FESTA 확인하기</button>
+                            </div>
+                            <select>
+                                <option>서울</option>
+                            </select>
+                        </div>
+
+                        <div class="select-box">
+                            <label>시/군/구</label>
+                            <select>
+                                <option>서울특별시</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <!-- 모달 창 -->
+                    <div id="evModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <p>EV FESTA 정보 팝업입니다.</p>
+                        </div>
+                    </div>
+
+
+
 
                     <!-- 가운데: 지급 현황 -->
                     <div class="status-box">
                         <h3>지급 현황</h3>
                         <div class="tabs">
-                            <button class="active">전기차</button>
-                            <button>수소차</button>
-                            <button>전기이륜</button>
+                            <button class="active" onclick="updateChart('ev')">전기차</button>
+                            <button onclick="updateChart('hydrogen')">수소차</button>
+                            <button onclick="updateChart('bike')">전기이륜</button>
                         </div>
-                        <div class="graph">
-                            <div class="bar" style="height: 60%;">공고</div>
-                            <div class="bar" style="height: 40%;">접수</div>
-                            <div class="bar" style="height: 30%;">출고</div>
-                        </div>
-                        <p class="count">잔여 대수 <small>(출고 기준)</small>: <strong>5,940</strong> <span>(5,112)</span></p>
+
+                        <canvas id="statusChart" width="250" height="200"></canvas>
+
+                        <p class="count">
+                            잔여 대수 <small>(출고 기준)</small>: <strong id="remainCount">5,767</strong>
+                            <span id="score">(5,059)</span>
+                        </p>
                     </div>
+
+
 
                     <!-- 오른쪽: 모델 선택 -->
                     <div class="model-box">
@@ -98,7 +121,7 @@
             </section>
 
             <!-- 보조금 조회 이력 영역 -->
-             <section class="result-section">
+            <section class="result-section">
                 <h2 class="result-title">보조금 조회 이력</h2>
                 <div class="result-box">
                     보조금 조회 내역이 없습니다.
@@ -106,12 +129,12 @@
                 <ul class="disclaimer">
                     <li>*조회 이력은 최대 10개까지 제공됩니다.</li>
                 </ul>
-             </section>
+            </section>
 
 
         </div>
 
-
+        <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="./js/중구맛집.js"></script>
+</head>
+
+<body style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+
+    <div style="width: 800px;height: 500px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+
+    <script>
+        // 
+        console.log("ALL DATA", 중구맛집);
+        //
+        const datas = 중구맛집.data;
+        console.log("datas", datas);
+
+        // 카테고리별 맛집 count
+        const cat_count = datas.map((item) => { return item.FD_CS })    // ['한식','중식','한식','중식'...]
+            .reduce((cat, item) => {
+                if (cat[item] !== undefined)      // item이 있다면
+                    cat[item]++;                // 카운트
+                else
+                    cat[item] = 1;                // 없으면 => 처음이라면 1로 카운트
+                return cat;
+            }, {})   //{한식:100,일식:55}
+
+        console.log(cat_count);
+    </script>
+
+
+    <!-- chartjs -->
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        const dataSet = [
+            {
+                label: 'red',
+                data: [12, 0, 0, 0, 0, 0],
+                borderwidth: 1,
+                backgroundColor: 'red',
+                borderColor: '',
+            },
+            {
+                label: 'orange',
+                data: [0, 22, 0, 0, 0, 0],
+                borderwidth: 1,
+                backgroundColor: 'orange',
+                borderColor: '',
+            },
+            {
+                label: 'yellow',
+                data: [0, 0, 30, 0, 0, 0],
+                borderwidth: 1,
+                backgroundColor: 'yellow',
+                borderColor: '',
+            },
+            {
+                label: 'green',
+                data: [0, 0, 0, 5, 0, 0],
+                borderwidth: 1,
+                backgroundColor: 'green',
+                borderColor: '',
+            },
+            {
+                label: 'blue',
+                data: [0, 0, 0, 0, 13, 0],
+                borderwidth: 1,
+                backgroundColor: 'blue',
+                borderColor: '',
+            },
+            {
+                label: 'purple',
+                data: [0, 0, 0, 0, 0, 7],
+                borderwidth: 1,
+                backgroundColor: 'purple',
+                borderColor: '',
+            }
+        ]
+
+        const option = {
+            // line에 적용
+            // animations:{
+            //     tension:{
+            //         duration : 1000,
+            //         easing : 'linear',
+            //         from : 1,
+            //         to : 0,
+            //         loop : true,
+            //     }
+            // },
+
+            // bar에 적용
+            animation: {
+                delay: (el) => { return el.dataIndex * 500; },
+            },
+
+            scales: {
+                x: {
+                    stacked: true,
+                    // barPercentage: 2,
+                    // categoryPercentage : 1.2,
+                },
+                y: {
+                    beginAtZero: true,
+                    // max : 100,
+                    // min : 0,
+                    // ticks:{
+                    //     stepSize: 10
+                    // }
+                },
+            },
+            onClick: (event, chartEl) => {
+                console.log(chartEl);
+            }
+        }
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(cat_count),
+                datasets: [{
+                    label: 'COUNT',
+                    data: Object.values(cat_count),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -118,14 +118,57 @@ main {
 }
 
 
-.region-box,
-.status-box,
-.model-box {
-    background-color: #111;
-    padding: 20px;
-    border: 1px solid #333;
-    width: 250px;
+
+
+
+
+
+
+
+/* ============지역=============== */
+.ev-button {
+  background-color: transparent;
+  border: none;
+  color: #0099cc;
+  font-size: 13px;
+  cursor: pointer;
+  padding-left: 51px;
 }
+
+.ev-button:hover {
+  text-decoration: underline;
+}
+
+/* 모달 스타일 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 .region-box select {
     width: 100%;
@@ -133,42 +176,56 @@ main {
     margin: 10px 0;
 }
 
-.status-box .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+/* =========지급 현황=========== */
+
+.status-box {
+  width: 280px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  font-family: sans-serif;
 }
 
-.status-box .tabs button {
-    flex: 1;
-    padding: 8px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
+.tabs {
+  display: flex;
+  margin-bottom: 10px;
 }
 
-.status-box .tabs button.active {
-    background-color: #007aff;
+.tabs button {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
 }
 
-.status-box .graph {
-    display: flex;
-    gap: 10px;
-    height: 150px;
-    align-items: flex-end;
-    margin-bottom: 20px;
+.tabs button.active {
+  background: #00779b;
+  color: white;
+  font-weight: bold;
 }
 
-.graph .bar {
-    background-color: #555;
-    width: 40px;
-    text-align: center;
-    font-size: 12px;
+.count {
+  font-size: 14px;
+  margin-top: 10px;
 }
+
+.count strong {
+  color: #00779b;
+  font-size: 18px;
+}
+
+
+
+/* =========모델 선택=========== */
+
 
 .model-box {
-    text-align: center;
+    background-color: #111;
+    padding: 20px;
+    border: 1px solid #333;
+    width: 250px;
+     text-align: center;
 }
 
 .model-box .model-icon {
@@ -184,6 +241,14 @@ main {
     cursor: pointer;
 }
 
+
+
+
+
+
+
+
+/* ======조회 결과===== */
 
 .result-section {
   background-color: #1a1a1a;

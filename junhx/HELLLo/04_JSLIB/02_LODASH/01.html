@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LODASH CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body style="height: 8000px;margin: 0;">
+    
+
+    <script>
+        console.log("_",_)
+;        // window.addEventListener('scroll',(e)=>{
+        //     console.log(window.scrollY);
+        // })
+
+        window.addEventListener('scroll',_.throttle(()=>{
+            console.log(window.scrollY);
+        },100))    // throttle 스크롤 감지 늦추기
+    </script>
+
+</body>
+</html>

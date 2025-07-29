@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- GOOGLE ICON -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48;
+
+            font-size: 3rem;
+            border: 3px solid;
+            border-radius: 50%;
+        }
+    </style>
+
+    <!-- SWIPER CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        * {}
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {}
+
+        .wrapper>header {
+            height: 80px;
+            background-color: white;
+        }
+
+        .wrapper>header>.top-header {
+            height: 30px;
+        }
+
+        .wrapper>header>.top-header>.swiper {
+            height: 100%;
+            background-color: bisque;
+        }
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper {}
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper>.swiper-slide {}
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper>.swiper-slide>a {}
+
+        .wrapper>main {}
+
+        .wrapper>main>section {}
+
+        .wrapper>main>section>.banner>.swiper {
+            /* 가져온 사진이 720px이라 */
+            min-height: 720px;
+            position: relative;
+        }
+
+        .wrapper>main>section.banner>.swiper>.swiper-wrapper {
+            height: 100%;
+        }
+
+        .wrapper>main>section.banner>.swiper>.swiper-wrapper>.swiper-slide {
+            height: 100%;
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            border-radius: 0;
+            /* 네모난 불릿 */
+            transition: .3s;
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-pagination-bullet-active {
+            width: 25px;
+            height: 25px;
+            background-color: white;
+        }
+
+
+        .wrapper>main>section.banner>.swiper .swiper-pagination {
+            color: white;
+            font-size: 1.3rem;
+            position: absolute;
+            left: 15.625vw;
+            top: 80%;
+            width: 300px;
+            letter-spacing: 3px;
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-pagination-current {
+            color: royalblue;
+        }
+
+        .swiper-pagination-total {}
+
+        .wrapper>main>section.banner>.swiper .swiper-button-next,
+        .wrapper>main>section.banner>.swiper .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            /* border: 1px solid white; */
+            border-radius: 50%;
+            position: absolute;
+            top: 82%;
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-button-next {
+            left: calc(15.625vw + 180px);
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-button-prev {
+            left: calc(15.625vw + 65px);
+        }
+
+        .wrapper>main>section.banner>.swiper .swiper-button-next::after,
+        .wrapper>main>section.banner>.swiper .swiper-button-prev::after {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .wrapper>main>section.banner>.swiper .start-stop-toggle {
+            position: absolute;
+            top: 79%;
+            left: calc(15.625vw + 10px);
+            z-index: 100;
+            cursor: pointer;
+            color: white;
+
+        }
+
+        .wrapper>main>section.banner>.swiper>.swiper-wrapper>.swiper-slide>a {}
+
+        .wrapper>main>section.banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+    </style>
+</head>
+
+<body>
+    <!-- .wrapper>header+main>section^footer -->
+    <div class="wrapper">
+        <header>
+            <div class="top-header">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><a href="javascript:void(0)">[공지] 오아시스 티켓 구함</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">[공지] 혁오 티켓 구함</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">[공지] 검정치마 티켓 구함</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">[공지] 잔나비 티켓 구함</a></div>
+                    </div>
+                </div>
+            </div>
+            <nav></nav>
+        </header>
+        <main>
+            <section class="banner">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="../01_SWIPER/images/a.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="../01_SWIPER/images/b.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="../01_SWIPER/images/c.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="../01_SWIPER/images/d.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- stop/start button -->
+                    <div class="start-stop-toggle">
+                        <span class="material-symbols-outlined">
+                            <!-- pause -->
+                            play_arrow
+                        </span>
+                    </div>
+
+                    <!-- If we need scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </section>
+        </main>
+        <footer></footer>
+    </div>
+
+    <script>
+        // const swiperBanner = new Swiper('선택자',{옵션들})
+        const swiperBanner = new Swiper('.wrapper>main>section.banner>.swiper', {
+            // Optional parameters
+            direction: 'horizontal',  //horizontal(수평 slide), vertical(수직 slide)
+            autoplay: {
+                delay: 2000,                 // 2초 후에 자동 재생
+                // pauseOnMouseEnter: true,    // 마우스 가져다대면 멈춤
+            },
+            loop: true,
+            effect: "slide",    // slide(기본), fade, scroll, cube, coverflow, flip
+            mousewheel: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.wrapper>main>section.banner>.swiper .swiper-pagination',
+                clickable: true,   // 불릿을 클릭 할 수 있음
+                type: 'fraction',   // bullets(기본), fraction, progrssbar
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.wrapper>main>section.banner>.swiper .swiper-button-next',
+                prevEl: '.wrapper>main>section.banner>.swiper .swiper-button-prev',
+            },
+        })
+
+        // 토글 버튼 만들기
+        const playPauseBtn = document.querySelector('.start-stop-toggle span');
+        let isPlaying = true;
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                playPauseBtn.innerHTML = 'pause';
+                swiperBanner.autoplay.stop();
+                isPlaying = false;
+            } else {
+                playPauseBtn.innerHTML = 'play_arrow';
+                swiperBanner.autoplay.start();
+                isPlaying = true;
+            }
+        });
+
+        // 공지사항 Swiper
+        const noticeSwiper = new Swiper('.top-header .swiper', {
+            // Optional parameters
+            direction: 'vertical',
+            autoplay : {
+                delay : 2000,
+            },
+            loop: true,
+            mousewheel : true,
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="./경찰청지역별범죄발생건수.js"></script>
+</head>
+<body style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+
+    <script>
+        const result = 
+        지역별범죄건수.reduce((resultObject,item)=>{
+            const {범죄대분류, 범죄중분류, ...rest} = item;
+            const values = Object.values(rest);
+            // 배열 함수를 쓸 수 있다
+            const item_sum = values.reduce((sum, count)=>{return sum+count;},0);
+
+            // console.log(범죄대분류,item_sum);
+            // return {범죄대분류, item_sum} reduce니까 주석 처리
+            if(resultObject[범죄대분류]!==undefined){
+                resultObject[범죄대분류] += item_sum;   // 기존값에서 누적
+            }else{
+                // 처음 누적
+                resultObject[범죄대분류] = item_sum;    // 초깃값
+            }
+            return resultObject;
+        },{})
+
+        console.log(result);
+</script>
+
+
+
+
+
+</body>
+</html>
