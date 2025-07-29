@@ -1,65 +1,319 @@
-/* 전체 페이지 설정 */
-body, html {
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
+  /* padding: 0; */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* 업로드 페이지: 화면의 80% */
-.upload-page {
-  width: 100%;
-  height: 80vh; /* 화면의 80% 높이 */
+/* ========== 첫 화면 ============= */
+
+/* .upload{
+  max-width: 1280px;
+  max-height: 600px;
+} */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fafafa;
 }
 
-/* 업로드 박스 */
-.upload-box {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* 업로드 라벨 (클릭 영역) */
-.upload-label {
-  width: 300px;
-  height: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  display: block;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.upload-label img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* + 아이콘 */
-.overlay {
+/* 닫기 버튼 */
+.closeButton {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: black;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.uploadLogo {
+  font-size: 30px;
+  margin: 0 0 40px 0;
+  font-weight: bold;
+}
+
+/* 모달 */
+.uploadModal {
+  background-color: #d1d1d1;
+  width: 70vw;
+  height: 70vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+  position: relative;
+  /* ← 이 줄 추가 */
+}
+
+.h1Box {
+  border-bottom: 1px solid;
+}
+
+.h1Box>h1 {
+  margin-bottom: 10px;
+}
+
+/* 아이콘 */
+.uploadIcon {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* 설명 텍스트 */
+.uploadText {
+  font-size: 100%;
+  margin-bottom: 30px;
+}
+
+/* 파란 버튼 */
+.uploadButton {
   background-color: #0095f6;
   color: white;
-  font-size: 24px;
-  width: 36px;
-  height: 36px;
-  text-align: center;
-  line-height: 36px;
-  border-radius: 50%;
-  border: 2px solid white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* 파일 선택 숨김 */
-input[type="file"] {
-  display: none;
+.uploadButton:hover {
+  background-color: #007dd1;
+}
+
+/* ============= 사진 누르고 난 뒤 ============== */
+
+/* 메인 컨테이너 */
+.previewContainer {
+  width: 90vw;
+  height: 80vh;
+  max-width: 1280px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #444;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.uploadLogo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* 전체 preview 화면 */
+#preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  min-height: 100vh;
+  /* 고정 height 말고 min-height로 바꾸기 */
+  overflow-y: auto;
+}
+
+/* 상단 헤더 (← 새 게시물 만들기 공유하기) */
+.btnBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: white;
+  border-bottom: 1px solid #333;
+}
+
+.btnBox h1 {
+  margin: 0;
+  padding-left: 35px;
+  font-size: 16px;
+}
+
+.previewBody {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  /* 양쪽 높이를 동일하게! */
+}
+
+/* 하단 콘텐츠: 이미지(65%) + info(35%) */
+.preview-container-content {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+/* 왼쪽 이미지 영역 */
+#previewImage {
+  width: 65%;
+  object-fit: cover;
+  height: 100%;
+}
+
+/* 오른쪽 텍스트/옵션 영역 */
+.previewInfo {
+  width: 35%;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 기타 요소 정돈 */
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.userName {
+  width: 100%;
+  height: 30px;
+}
+
+#atextarea {
+  width: 100%;
+  height: 180px;
+  resize: none;
+  background-color: white;
+  color: black;
+  border: 1px solid #444;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.options {
+  width: 100%;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.optionsText {
+  margin: 0 0 5px 0;
+}
+
+#location {
+  height: 100px;
+  border: 1px solid #333;
+  margin: 20px 0;
+}
+
+#schedule {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.userName {
+  width: 100%;
+  height: 30px;
+}
+
+#scheduleTextarea {
+  width: 100%;
+  height: 100%;
+  background-color:white;
+  color: black;
+  border: 1px solid #333;
+  padding: 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  font-size: 13px;
+}
+
+
+
+
+
+
+/* 모바일 */
+@media (max-width: 768px) {
+  * {margin: 0;padding: 0;}
+
+  .overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upload {}
+
+  .uploadLogo {
+    font-size: 30px;
+    margin: 0 0 50px 0;
+    font-weight: bold;
+  }
+
+  .previewBody {
+    flex-direction: column;
+  }
+
+  #previewImage,
+  .previewInfo {
+    width: 90vw;
+    height: 40vh;
+  }
+
+  .uploadModal .btnBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* 가운데 정렬 유지 */
+  .uploadModal .btnBox h1 {
+    margin: 0 auto;
+    font-size: 16px;
+    color: #333;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* 설명 텍스트 */
+  .uploadText {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* 파란 버튼 */
+  .uploadButton {
+    padding: 6px 14px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .h1Box>h1 {
+    font-size: 20px;
+  }
+
+
+
 }

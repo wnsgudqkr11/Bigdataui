@@ -1,23 +1,76 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
-  <title>피드 만들기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travelgram 업로드</title>
   <link rel="stylesheet" href="./upload_main.css" />
 </head>
+
 <body>
 
-  <!-- 업로드 전체 창 -->
-  <div class="upload-page">
-    <div class="upload-box">
-      <label for="fileInput" class="upload-label">
-        <img id="preview" src="default-profile.png" alt="이미지를 선택하세요" />
-        <div class="overlay">+</div>
-      </label>
-      <input type="file" id="fileInput" accept="image/*" />
+  <section id="upload">
+    <div class="overlay">
+      <a href="temp.html" class="closeButton">×</a>
+      <div class="uploadLogo">Travelgram</div>
+      <div class="uploadModal">
+        <div class="h1Box">
+          <h1>새 게시물 만들기</h1>
+        </div>
+
+        <div class="uploadIcon">📷🎞️</div>
+        <div class="uploadText">미디어를 여기에 끌어다 놓으세요</div>
+        <label for="fileUpload" class="uploadButton">사진 선택</label>
+        <input type="file" id="fileUpload" style="display: none" />
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section id="preview" style="display: none;">
+    <div class="uploadLogo">Travelgram</div>
+    <a href="temp.html" class="closeButton">×</a>
+
+    <div class="previewContainer">
+      <div class="btnBox">
+        <button id="backBtn">←</button>
+        <h1>새 게시물 만들기</h1>
+        <button id="shareBtn">공유하기</button>
+      </div>
+
+      <div class="previewBody">
+        <img id="previewImage" src="" alt="미리보기 이미지">
+        <div class="previewInfo">
+          <div class="userInfo">
+            <div class="userName">jun.hx</div>
+            <textarea id="atextarea" placeholder="문구를 입력하세요..." maxlength="2200"></textarea>
+          </div>
+
+          <!-- <div class="options">
+            <div id="location">
+              <p class="optionsText">위치</p>
+            </div>
+            <div id="schedule">
+              <p class="optionsText">일정 공유</p>
+              <textarea id="scheduleTextarea" placeholder="일정을 공유하세요..." maxlength="2200"></textarea>
+            </div>
+          </div> -->
+
+          <div id="location">
+            <p class="optionsText">위치</p>
+            <!-- <textarea id="scheduleTextarea" placeholder="위치를 공유하세요..." maxlength="2200"></textarea> -->
+          </div>
+          <div id="schedule">
+            <p class="optionsText">일정 공유</p>
+            <textarea id="scheduleTextarea" placeholder="일정을 공유하세요..." maxlength="2200"></textarea>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script src="./upload_main.js"></script>
 </body>
+
 </html>
