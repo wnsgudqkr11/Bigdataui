@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 그림판</title>
+    <style>
+        #canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+        .toolbar {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button onclick="clearCanvas()">Clear</button>
+    <label for="color">Color:</label>
+    <input type="color" id="color" value="#000000">
+    <label for="size">Size:</label>
+    <input type="range" id="size" min="1" max="10" value="5">
+</div>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script src="01.js"></script>
+</body>
+</html>
+
+

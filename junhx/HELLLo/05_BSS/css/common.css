@@ -1,0 +1,50 @@
+:root{font-size: 16px;}
+*{box-sizing: border-box;}
+ul{list-style: none;padding: 0;margin: 0;}
+body{padding: 0;margin: 0;}
+a{text-decoration: none;color: black;}
+
+
+/*  */
+.wrapper{}
+.wrapper>header{}
+.wrapper>header>.top-header{}
+.wrapper>header>nav{}
+/*  */
+.wrapper>main{} 
+.wrapper>main>section{}
+
+/*  */
+.wrapper>main>section.banner-block .carousel-control-prev,
+.wrapper>main>section.banner-block .carousel-control-next{
+    border: 5px solid white;
+    font-size: 5rem !important;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    width: 48px;
+    height: 48px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+/*  */
+.wrapper>main>section.card-block{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* border: 5px solid red; */
+    gap: 15px;
+
+    /*  */
+    place-items: center;
+    padding: 50px 0;
+}
+
+
+.wrapper>main>section.navtab-block .tab-content{
+    min-height: 300px;
+}
+
+
+/*  */
+.wrapper>footer{}

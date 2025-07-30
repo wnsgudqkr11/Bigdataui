@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
+
+</head>
+
+<body>
+    <style>
+        #qrcode {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            cursor: pointer;
+        }
+    </style>
+    <div id="qrcode"></div>
+
+    <script>
+        // QR 코드 생성
+
+        var qr = qrcode(0, 'L'); // 오류 정정 레벨(Low) //qrcode(version, errorCorrectionLevel)
+        qr.addData('https://www.naver.com'); // QR 코드에 포함될 데이터
+        qr.make();
+
+        // QR 코드를 HTML 요소로 렌더링
+        var qrDiv = document.getElementById('qrcode');
+        qrDiv.innerHTML = qr.createSvgTag({ scalable: true });
+        // QR 코드를 클릭하면 URL로 이동
+        qrDiv.addEventListener('click', function () {
+            window.location.href = 'https://www.naver.com';
+        });
+    </script>
+
+</body>
+
+</html>

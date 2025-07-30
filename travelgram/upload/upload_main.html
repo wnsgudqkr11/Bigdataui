@@ -6,69 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Travelgram 업로드</title>
   <link rel="stylesheet" href="./upload_main.css" />
+
+  <!-- 로고 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&display=swap" rel="stylesheet" />
 </head>
 
 <body>
 
-  <section id="upload">
-    <div class="overlay">
-      <a href="temp.html" class="closeButton">×</a>
-      <div class="uploadLogo">Travelgram</div>
-      <div class="uploadModal">
-        <div class="h1Box">
-          <h1>새 게시물 만들기</h1>
-        </div>
+  <!-- <div class="main-wrapper">
+    <nav class="menu-nav">
+      <a href="./main-page.html" class="menu-item home"><img src="../fromFigma_Icon_1/홈.svg" /><span>홈</span></a>
+      <a href="javascript:void(0)" class="menu-item search"><img src="../fromFigma_Icon_1/검색.svg" /><span>검색</span></a>
+      <a href="javascript:void(0)" class="menu-item map"><img src="../fromFigma_Icon_1/지도.svg" /><span>지도</span></a>
+      <a href="javascript:void(0)" class="menu-item message"><img
+          src="../fromFigma_Icon_1/메시지.svg" /><span>메시지</span></a>
+      <a href="javascript:void(0)" class="menu-item alarm"><img src="../fromFigma_Icon_1/하트버튼.svg" /><span>알림</span></a>
+      <a href="javascript:void(0)" class="menu-item make"><img src="../fromFigma_Icon_1/만들기.svg" /><span>만들기</span></a>
+      <a href="../이인호(프로필)/profile_1.html" class="menu-item profile"><img
+          src="../fromFigma_Icon_1/프로필.svg" /><span>프로필</span></a>
+    </nav> -->
 
-        <div class="uploadIcon">📷🎞️</div>
-        <div class="uploadText">미디어를 여기에 끌어다 놓으세요</div>
-        <label for="fileUpload" class="uploadButton">사진 선택</label>
-        <input type="file" id="fileUpload" style="display: none" />
-      </div>
-    </div>
-  </section>
+<!-- 
+    <div class="content-area"> -->
 
-  <section id="preview" style="display: none;">
-    <div class="uploadLogo">Travelgram</div>
-    <a href="temp.html" class="closeButton">×</a>
-
-    <div class="previewContainer">
-      <div class="btnBox">
-        <button id="backBtn">←</button>
-        <h1>새 게시물 만들기</h1>
-        <button id="shareBtn">공유하기</button>
-      </div>
-
-      <div class="previewBody">
-        <img id="previewImage" src="" alt="미리보기 이미지">
-        <div class="previewInfo">
-          <div class="userInfo">
-            <div class="userName">jun.hx</div>
-            <textarea id="atextarea" placeholder="문구를 입력하세요..." maxlength="2200"></textarea>
-          </div>
-
-          <!-- <div class="options">
-            <div id="location">
-              <p class="optionsText">위치</p>
+      <section id="upload">
+        <div class="overlay">
+          <!-- 링크 메인에 연결하기 -->
+          <a href="javascript:void(0)" class="closeButton">×</a>
+          <div class="uploadLogo">Travelgram</div>
+          <div class="uploadModal">
+            <div class="h1Box">
+              <h1>새 게시물 만들기</h1>
             </div>
-            <div id="schedule">
-              <p class="optionsText">일정 공유</p>
-              <textarea id="scheduleTextarea" placeholder="일정을 공유하세요..." maxlength="2200"></textarea>
-            </div>
-          </div> -->
 
-          <div id="location">
-            <p class="optionsText">위치</p>
-            <!-- <textarea id="scheduleTextarea" placeholder="위치를 공유하세요..." maxlength="2200"></textarea> -->
+            <div class="uploadIcon">📷🎞️</div>
+            <div class="uploadText">미디어를 공유해주세요</div>
+            <label for="fileUpload" class="uploadButton">미디어 선택</label>
+            <input type="file" id="fileUpload" style="display: none" />
           </div>
-          <div id="schedule">
-            <p class="optionsText">일정 공유</p>
-            <textarea id="scheduleTextarea" placeholder="일정을 공유하세요..." maxlength="2200"></textarea>
-          </div>
-
         </div>
-      </div>
+      </section>
+
+      <section id="preview" style="display: none;">
+        <div class="uploadLogo">Travelgram</div>
+        <!-- 링크 메인에 연결하기 -->
+        <a href="javascript:void(0)" class="closeButton">×</a>
+
+        <div class="previewContainer">
+          <div class="btnBox">
+            <button id="backBtn">←</button>
+            <h1>새 게시물 만들기</h1>
+            <button id="shareBtn">공유하기</button>
+          </div>
+
+          <div class="previewBody">
+            <img id="previewImage" src="" alt="미리보기 이미지">
+            <div class="previewInfo">
+              <div class="userInfo">
+                <div class="userName">jun.hx</div>
+                <textarea id="atextarea" placeholder="문구를 입력하세요..." maxlength="2200"></textarea>
+              </div>
+
+              <div id="location">
+                <p class="optionsText">위치</p>
+                <!-- 미리보기 작은 지도 (클릭 가능) -->
+                <div id="map-preview-container">
+                  <div id="map-preview"></div>
+                </div>
+
+                <!-- 전체 지도 모달 -->
+                <div id="map-modal" class="hidden">
+                  <div id="map-fullscreen"></div>
+                  <button id="close-map">닫기</button>
+                </div>
+
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+              </div>
+
+              <div id="schedule">
+                <p class="optionsText">일정 공유</p>
+                <textarea id="scheduleTextarea" placeholder="일정을 공유하세요..." maxlength="2200"></textarea>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  <!-- </div> -->
 
   <script src="./upload_main.js"></script>
 </body>
