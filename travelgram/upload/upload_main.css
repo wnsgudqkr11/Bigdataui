@@ -1,28 +1,45 @@
-body {
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     font-family: Arial, sans-serif;
+ }
+
+
+ /* body {
   margin: 0;
-  /* padding: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
+} */
+
+ body {
+     background-color: #ffff;
+ }
+
+ a {
+     text-decoration: none;
+     margin: 0;
+     padding: 0;
+     color: black;
+ }
 
 
-
-/* 전체 페이지 레이아웃 (가로 정렬) */
-/* .main-wrapper {
+ /* 전체 페이지 레이아웃 (가로 정렬) */
+ /* .main-wrapper {
   display: flex;
   flex-direction: row;
   height: 100vh;
 } */
 
-/* 왼쪽 메뉴바 설정 */
-/* .menu-nav {
+ /* 왼쪽 메뉴바 설정 */
+ /* .menu-nav {
   display: flex;
   flex-direction: column;
   gap: 16px;
   flex-grow: 1;
 } */
 
-/* 오른쪽 콘텐츠 영역 */
-/* .content-area {
+ /* 오른쪽 콘텐츠 영역 */
+ /* .content-area {
   flex: 1;
   overflow-y: auto;
 } */
@@ -30,390 +47,422 @@ body {
 
 
 
-/* ============ 메뉴바 ============== */
-/* 메뉴 정렬 */
-/* .menu-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex-grow: 1;
-} */
+ /* ============ 메뉴바 ============== */
+ /* 메인메뉴 틀 생성 */
+ .menu-sidebar {
+     position: fixed;
+     width: 220px;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     background: #fff;
+     border-right: 1px solid #dbdbdb;
+     padding: 20px 12px;
+     display: flex;
+     flex-direction: column;
+ }
 
-/* 메뉴 각 요소의 설정 */
-/* .menu-item {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  color: #000;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background 0.2s;
-} */
+ /* 메인메뉴의 로고 설정 */
+ .menu-logo {
+     font-family: 'Satisfy', cursive;
+     font-weight: bold;
+     font-size: 24px;
+     margin-bottom: 30px;
+     margin-left: 10px;
+ }
 
-/* 메뉴 아이콘 설정 */
-/* .menu-item img {
-  width: 22px;
-  height: 22px;
-  margin-right: 10px;
-} */
+ /* 메뉴 정렬 */
+ .menu-nav {
+     display: flex;
+     flex-direction: column;
+     gap: 16px;
+     flex-grow: 1;
+ }
 
-/* 메뉴 마우스 호버 설정 */
-/* .menu-item:hover {
-  background: #f2f2f2;
-} */
+ /* 메뉴 각 요소의 설정 */
+ .menu-item {
+     display: flex;
+     align-items: center;
+     font-size: 16px;
+     color: #000;
+     padding: 8px;
+     border-radius: 8px;
+     transition: background 0.2s;
+ }
 
+ /* 메뉴 아이콘 설정 */
+ .menu-item img {
+     width: 22px;
+     height: 22px;
+     margin-right: 10px;
+ }
 
-
-/* ========== 첫 화면 ============= */
-
-/* .upload{
-  max-width: 1280px;
-  max-height: 600px;
-} */
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.95);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* 닫기 버튼 */
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 30px;
-  color: black;
-  text-decoration: none;
-  z-index: 1000;
-}
-
-.uploadLogo {
-  font-family: 'Satisfy', cursive;
-  font-size: 35px;
-  margin: 0 0 40px 0;
-  font-weight: bold;
-}
-
-/* 모달 */
-.uploadModal {
-  background-color: #d1d1d1;
-  width: 70vw;
-  height: 70vh;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  text-align: center;
-  position: relative;
-  /* ← 이 줄 추가 */
-}
-
-.h1Box {
-  border-bottom: 1px solid;
-}
-
-.h1Box>h1 {
-  margin-bottom: 10px;
-}
-
-/* 아이콘 */
-.uploadIcon {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-/* 설명 텍스트 */
-.uploadText {
-  font-size: 100%;
-  margin-bottom: 30px;
-}
-
-/* 파란 버튼 */
-.uploadButton {
-  background-color: #0095f6;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.uploadButton:hover {
-  background-color: #007dd1;
-}
-
-/* ============= 사진 누르고 난 뒤 ============== */
-
-/* 메인 컨테이너 */
-.previewContainer {
-  width: 90vw;
-  height: 80vh;
-  max-width: 1280px;
-  max-height: 900px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #444;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: white;
-}
-
-/* 전체 preview 화면 */
-#preview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  min-height: 100vh;
-  /* 고정 height 말고 min-height로 바꾸기 */
-  overflow-y: auto;
-}
-
-/* 상단 헤더 (← 새 게시물 만들기 공유하기) */
-.btnBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background-color: white;
-  border-bottom: 1px solid #333;
-}
-
-.btnBox h1 {
-  margin: 0;
-  padding-left: 35px;
-  font-size: 16px;
-}
-
-.previewBody {
-  flex: 1;
-  display: flex;
-  align-items: stretch;
-  /* 양쪽 높이를 동일하게! */
-}
-
-/* 하단 콘텐츠: 이미지(65%) + info(35%) */
-.preview-container-content {
-  flex: 1;
-  display: flex;
-  height: 100%;
-}
-
-/* 왼쪽 이미지 영역 */
-#previewImage {
-  width: 65%;
-  object-fit: cover;
-  height: 100%;
-}
-
-/* 오른쪽 텍스트/옵션 영역 */
-.previewInfo {
-  width: 35%;
-  padding: 16px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* 기타 요소 정돈 */
-.userInfo {
-  margin-bottom: 20px;
-}
-
-.userName {
-  width: 100%;
-  height: 30px;
-}
-
-#atextarea {
-  width: 100%;
-  height: 180px;
-  resize: none;
-  background-color: white;
-  color: black;
-  border: 1px solid #444;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.optionsText {
-  margin: 0 0 5px 0;
-}
+ /* 메뉴 마우스 호버 설정 */
+ .menu-item:hover {
+     background: #f2f2f2;
+ }
 
 
-/* ========= 지도 ========= */
 
-#location {
-  height: 120px;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-}
 
-#map-preview-container {
-  width: 100%;
-  aspect-ratio: 2 / 1; /* 비율 유지: 2:1 */
-  /* max-height: 200px; 너무 커지는 것 방지 */
+ /* ========== 첫 화면 ============= */
+
+ .overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background-color: rgba(255, 255, 255, 0.95);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ /* 닫기 버튼 */
+ .closeButton {
+     position: absolute;
+     top: 10px;
+     right: 20px;
+     font-size: 30px;
+     color: black;
+     text-decoration: none;
+     z-index: 1000;
+ }
+
+ .uploadLogo {
+     font-family: 'Satisfy', cursive;
+     font-size: 35px;
+     margin: 0 0 40px 0;
+     font-weight: bold;
+ }
+
+ /* 모달 */
+ .uploadModal {
+     background-color: #d1d1d1;
+     width: 70vw;
+     height: 70vh;
+     border-radius: 12px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     color: black;
+     text-align: center;
+     position: relative;
+     /* ← 이 줄 추가 */
+ }
+
+ .h1Box {
+     border-bottom: 1px solid;
+ }
+
+ .h1Box>h1 {
+     margin-bottom: 10px;
+ }
+
+ /* 아이콘 */
+ .uploadIcon {
+     font-size: 36px;
+     margin-bottom: 20px;
+ }
+
+ /* 설명 텍스트 */
+ .uploadText {
+     font-size: 100%;
+     margin-bottom: 30px;
+ }
+
+ /* 파란 버튼 */
+ .uploadButton {
+     background-color: #0095f6;
+     color: white;
+     border: none;
+     padding: 8px 16px;
+     border-radius: 8px;
+     font-weight: bold;
+     font-size: 14px;
+     cursor: pointer;
+     transition: background-color 0.2s ease;
+ }
+
+ .uploadButton:hover {
+     background-color: #007dd1;
+ }
+
+ /* ============= 사진 누르고 난 뒤 ============== */
+
+ /* 메인 컨테이너 */
+ .previewContainer {
+     width: 90vw;
+     height: 80vh;
+     max-width: 1280px;
+     max-height: 900px;
+     display: flex;
+     flex-direction: column;
+     border: 1px solid #444;
+     border-radius: 10px;
+     overflow: hidden;
+     background-color: white;
+ }
+
+ /* 전체 preview 화면 */
+ #preview {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: white;
+     min-height: 100vh;
+     overflow-y: auto;
+ }
+
+ /* 상단 헤더 (← 새 게시물 만들기 공유하기) */
+ .btnBox {
+    
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 12px 16px;
+     background-color: white;
+     border-bottom: 1px solid #333;
+ }
+
+ .btnBox h1 {
+     margin: 0;
+     padding-left: 35px;
+     font-size: 16px;
+ }
+
+ .backBtn{
+    width: 30px;
+ }
+
+
+
+ .previewBody {
+     flex: 1;
+     display: flex;
+     align-items: stretch;
+     /* 양쪽 높이를 동일하게! */
+ }
+
+ /* 하단 콘텐츠: 이미지(65%) + info(35%) */
+ .preview-container-content {
+     flex: 1;
+     display: flex;
+     height: 100%;
+ }
+
+ /* 왼쪽 이미지 영역 */
+ #previewImage {
+     width: 65%;
+     object-fit: cover;
+     height: 100%;
+ }
+
+ /* 오른쪽 텍스트/옵션 영역 */
+ .previewInfo {
+     width: 35%;
+     padding: 16px;
+     box-sizing: border-box;
+     overflow-y: auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+ }
+
+ /* 기타 요소 정돈 */
+ .userInfo {
+     margin-bottom: 20px;
+ }
+
+ .userName {
+     width: 100%;
+     height: 30px;
+ }
+
+ #atextarea {
+     width: 100%;
+     height: 180px;
+     resize: none;
+     background-color: white;
+     color: black;
+     border: 1px solid #444;
+     padding: 8px;
+     box-sizing: border-box;
+ }
+
+ .optionsText {
+     margin: 0 0 5px 0;
+ }
+
+
+ /* ========= 지도 ========= */
+
+ #location {
+     height: 180px;
+     margin: 10px 0;
+     display: flex;
+     flex-direction: column;
+ }
+
+ #map-preview-container {
+     /* width: 100%;
+  aspect-ratio: 2 / 1;
   border: 1px solid black;
   overflow: hidden;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; */
+     width: 100%;
+     height: 120px;
+     /* 높이는 원하는 만큼 조절 가능 */
+     cursor: pointer;
+     overflow: hidden;
+     /* 혹시 지도 바깥이 삐져나오는 경우 대비 */
+     border-radius: 6px;
+ }
 
-#map-preview {
-  width: 100%;
-  height: 100%;
-}
-
-
-/* 모달 전체 지도 */
-#map-modal {
-    display: none; /* 기본은 숨김 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    z-index: 9999;
-}
-
-#map-fullscreen {
-    width: 100%;
-    height: 100%;
-}
-
-#close-map {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10000;
-    padding: 8px 12px;
-}
+ #map-preview {
+     width: 100%;
+     height: 100%;
+ }
 
 
+ /* 모달 전체 지도 */
+ #map-modal {
+     display: none;
+     /* 기본은 숨김 */
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: white;
+     z-index: 9999;
+ }
 
+ #map-fullscreen {
+     width: 100%;
+     height: 100%;
+ }
 
-
-#schedule {
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-}
-
-.userName {
-  width: 100%;
-  height: 30px;
-}
-
-#scheduleTextarea {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  color: black;
-  border: 1px solid #333;
-  padding: 6px;
-  box-sizing: border-box;
-  resize: vertical;
-  font-size: 13px;
-}
+ #close-map {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     z-index: 10000;
+     padding: 8px 12px;
+ }
 
 
 
 
+ /* ========= 일정 공유 =========== */
+ #schedule {
+     display: flex;
+     flex-direction: column;
+     height: 300px;
+ }
 
+ .userName {
+     width: 100%;
+     height: 30px;
+ }
 
-/* 모바일 */
-@media (max-width: 768px) {
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  .overlay {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.95);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .upload {}
-
-  .uploadLogo {
-    font-size: 30px;
-    margin: 0 0 50px 0;
-    font-weight: bold;
-  }
-
-  .previewBody {
-    flex-direction: column;
-  }
-
-  #previewImage,
-  .previewInfo {
-    width: 90vw;
-    height: 40vh;
-  }
-
-  .uploadModal .btnBox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 12px 16px;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-  /* 가운데 정렬 유지 */
-  .uploadModal .btnBox h1 {
-    margin: 0 auto;
-    font-size: 16px;
-    color: #333;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* 설명 텍스트 */
-  .uploadText {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  /* 파란 버튼 */
-  .uploadButton {
-    padding: 6px 14px;
-    font-size: 11px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .h1Box>h1 {
-    font-size: 20px;
-  }
+ #scheduleTextarea {
+     width: 100%;
+     height: 100%;
+     background-color: white;
+     color: black;
+     border: 1px solid #333;
+     padding: 6px;
+     box-sizing: border-box;
+     resize: vertical;
+     font-size: 13px;
+ }
 
 
 
-}
+
+
+ /* 수정 해야 함 */
+ /* 모바일 */
+ @media (max-width: 768px) {
+     * {
+         margin: 0;
+         padding: 0;
+     }
+
+     .overlay {
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100vh;
+         background-color: rgba(255, 255, 255, 0.95);
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+     }
+
+     .upload {}
+
+     .uploadLogo {
+         font-size: 30px;
+         margin: 0 0 50px 0;
+         font-weight: bold;
+     }
+
+     .previewBody {
+         flex-direction: column;
+     }
+
+     #previewImage,
+     .previewInfo {
+         width: 90vw;
+         height: 40vh;
+     }
+
+     .uploadModal .btnBox {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 100%;
+         padding: 12px 16px;
+         background-color: #f5f5f5;
+         border-bottom: 1px solid #ccc;
+         box-sizing: border-box;
+     }
+
+     /* 가운데 정렬 유지 */
+     .uploadModal .btnBox h1 {
+         margin: 0 auto;
+         font-size: 16px;
+         color: #333;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+     }
+
+     /* 설명 텍스트 */
+     .uploadText {
+         font-size: 14px;
+         margin-bottom: 20px;
+     }
+
+     /* 파란 버튼 */
+     .uploadButton {
+         padding: 6px 14px;
+         font-size: 11px;
+         cursor: pointer;
+         transition: background-color 0.2s ease;
+     }
+
+     .h1Box>h1 {
+         font-size: 20px;
+     }
+
+
+
+ }
