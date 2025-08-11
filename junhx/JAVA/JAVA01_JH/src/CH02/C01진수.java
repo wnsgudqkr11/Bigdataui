@@ -16,8 +16,6 @@ public class C01진수 {
 		System.out.printf("16진수 : %x\n", 173);
 		System.out.printf("16진수 : %x\n", 0255);
 		System.out.printf("16진수 : %x\n", 0xAD);
-		
-		
 
 	}
 
