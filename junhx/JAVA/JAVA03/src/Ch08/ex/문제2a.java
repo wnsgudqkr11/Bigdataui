@@ -1,0 +1,172 @@
+package Ch08.ex;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+
+public class 문제2a {
+	// DB CONN DATA
+	private static String id = "root";
+	private static String pw = "1234";
+	private static String url = "jdbc:mysql://localhost:3306/opendatadb";
+
+	// JDBC참조변수
+	private static Connection conn = null; // DBMS 의 특정 DB와 연결되는 객체
+	private static PreparedStatement pstmt = null; // SQL Query 전송용 객체
+	private static ResultSet rs = null; // Select 결과물 담을 객체
+
+	public static void conn() throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		System.out.println("Driver Loading Success...");
+		conn = DriverManager.getConnection(url, id, pw);
+		System.out.println("DB CONNECTED...");
+	}
+
+	public static List<BookDto> selectAll() throws SQLException {
+
+		pstmt = conn.prepareStatement("SELECT * FROM tbl_book");
+		rs = pstmt.executeQuery();
+
+		List<BookDto> list = new ArrayList();
+		BookDto dto = null;
+		if (rs != null) {
+			while (rs.next()) {
+				dto = new BookDto();
+				dto.setBookCode(rs.getLong("bookCode"));
+				dto.setBookName(rs.getString("bookName"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setIsbn(rs.getString("isbn"));
+				list.add(dto);
+			}
+		}
+		return list;
+	}
+
+	public static BookDto select(Long bookCode) throws SQLException {
+
+		pstmt = conn.prepareStatement("SELECT * FROM tbl_book where bookCode=?");
+		pstmt.setLong(1, bookCode);
+		rs = pstmt.executeQuery();
+
+		BookDto dto = null;
+		if (rs != null) {
+
+			rs.next();
+			dto = new BookDto();
+			dto.setBookCode(rs.getLong("bookCode"));
+			dto.setBookName(rs.getString("bookName"));
+			dto.setPublisher(rs.getString("publisher"));
+			dto.setIsbn(rs.getString("isbn"));
+		}
+		return dto;
+	}
+
+	public static int insertBook(BookDto bookDto) throws SQLException {
+
+		pstmt = conn.prepareStatement("insert into tbl_book values(?,?,?,?)");
+		pstmt.setLong(1, bookDto.getBookCode());
+		pstmt.setString(2, bookDto.getBookName());
+		pstmt.setString(3, bookDto.getPublisher());
+		pstmt.setString(4, bookDto.getIsbn());
+		//
+		int result = pstmt.executeUpdate();
+
+		return result;
+	}
+
+	public static int updateBook(BookDto bookDto) throws SQLException {
+
+		pstmt = conn.prepareStatement("update tbl_book set bookName=?, publisher=?, isbn=? where bookCode=?");
+		pstmt.setString(1, bookDto.getBookName());
+		pstmt.setString(2, bookDto.getPublisher());
+		pstmt.setString(3, bookDto.getIsbn());
+		pstmt.setLong(4, bookDto.getBookCode());
+		//
+		int result = pstmt.executeUpdate();
+
+		return result;
+
+	}
+
+//	public static int deleteBook(BookDto bookDto) throws SQLException {
+//
+//		pstmt = conn.prepareStatement("delete from tbl_book where bookCode=?");
+//		pstmt.setLong(1, bookDto.getBookCode());
+//		//
+//		int result = pstmt.executeUpdate();
+//
+//		return result;
+//	}
+	
+	public static int deleteBook(Long bookCode) throws SQLException {
+	    pstmt = conn.prepareStatement("delete from tbl_book where bookCode=?");
+	    pstmt.setLong(1, bookCode);
+	    return pstmt.executeUpdate();
+	}
+
+	public static void main(String[] args) {
+		try {
+			// DBCONN
+			conn();
+
+			// TX START
+			conn.setAutoCommit(false);
+
+			// INSERT
+//			insertBook(new BookDto(1L, "도서명1", "출판사명1", "isbn-1"));
+//			insertBook(new BookDto(2L, "도서명2", "출판사명2", "isbn-2"));
+//			insertBook(new BookDto(3L, "도서명3", "출판사명3", "isbn-3"));
+
+//			// SELECTALL
+			List<BookDto> allBook = selectAll();
+			System.out.println("SelectAll : ");
+			allBook.forEach(System.out::println);
+
+//			// SELECT
+			BookDto dto = select(1L);
+			System.out.println("select : " + dto);
+
+//			// UPDATE
+			dto.setBookName("수정도서명-2");
+			dto.setPublisher("수정출판사명-2");
+			int r1 = updateBook(dto);
+			if (r1 > 0)
+				System.out.println("수정완료 : " + r1);
+
+//			// DELETE
+//			dto.setBookCode(2L);
+//			int r2 = deleteBook(dto);
+			int r2 = deleteBook(2L);
+			if (r2 > 0)
+				System.out.println("삭제완료 : " + r2);
+
+//			//TX END
+			conn.commit();
+		} catch (Exception e) {
+			// TX ROLLBACKALL
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+			}
+		} finally {
+			// 자원제거
+			try {
+				rs.close();
+			} catch (Exception e3) {
+			}
+			try {
+				conn.close();
+			} catch (Exception e3) {
+			}
+			try {
+				conn.close();
+			} catch (Exception e3) {
+			}
+
+		}
+	}
+}
