@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기차 · 수소차 구매보조금 조회 | 현대자동차</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --page-bg: #f6f6f6;
+            --banner-path-bg: #f0eae4;
+            --banner-title-bg: #e4dcd3;
+            --box-bg: #ffffff;
+            --text-color: #000000;
+            --primary-blue: #002c5f;
+            --light-gray: #e5e5e5;
+            --medium-gray: #767676;
+            --dark-gray: #333333;
+            --footer-bg: #1c1b1b; 
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Pretendard", sans-serif;
+            background-color: var(--page-bg);
+            color: var(--text-color);
+            font-size: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        #main-header {
+            background-color: var(--box-bg);
+            border-bottom: 1px solid var(--light-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; transition: opacity 0.3s, visibility 0.3s; }
+        .hyundai-logo-img { width: 30px; height: 30px; }
+        .hyundai-logo-text { font-weight: bold; font-size: 20px; color: var(--primary-blue); }
+
+        .nav-menu { display: flex; gap: 40px; font-weight: bold; transition: opacity 0.3s, visibility 0.3s;}
+        .nav-menu a:hover { color: var(--primary-blue); }
+        .nav-icons { display: flex; align-items: center; gap: 20px; transition: opacity 0.3s, visibility 0.3s;}
+        .nav-icons .icon { width: 24px; height: 24px; }
+
+        #main-header.sticky {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #main-header.sticky .header-nav {
+            height: 60px;
+        }
+        #main-header.sticky .logo-container,
+        #main-header.sticky .nav-menu,
+        #main-header.sticky .nav-icons {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .sticky-header-content {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+            font-size: 14px;
+        }
+        #main-header.sticky .sticky-header-content {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .sticky-main-menu {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .sticky-separator {
+            width: 1px;
+            height: 14px;
+            background-color: var(--light-gray);
+            margin: 0 30px;
+        }
+        .sticky-sub-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            color: var(--medium-gray);
+        }
+        .sticky-sub-menu a:hover {
+            color: var(--text-color);
+        }
+        .sticky-sub-menu a.active {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .scroll-progress-container {
+            width: 100%; height: 2px; background-color: transparent;
+            position: absolute; bottom: -1px; left: 0;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        #main-header.sticky .scroll-progress-container { opacity: 1; }
+        .scroll-progress-bar { height: 100%; background-color: var(--primary-blue); width: 0%; }
+
+        /* 1. 상단 배너 스타일 수정 */
+        .top-banner-wrapper {
+            background-color: var(--banner-title-bg);
+            position: relative;
+        }
+        .top-banner-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65px; /* 경로 영역 높이와 유사하게 설정 */
+            background-color: var(--banner-path-bg);
+            /* 사선 모양 적용 */
+            clip-path: polygon(0 0, 100% 0, 98% 100%, 0% 100%);
+        }
+        .top-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .path { padding: 20px 0; display: flex; align-items: center; font-size: 14px; color: var(--medium-gray); flex-wrap: wrap; }
+        .path li::after { content: '>'; margin: 0 10px; color: #c0c0c0; }
+        .path li:last-child::after { content: ''; }
+        .path li:last-child a { 
+            font-weight: bold; 
+            color: var(--primary-blue);
+        }
+        .path a:hover { text-decoration: underline; }
+        .top-content { text-align: center; padding: 45px 0 60px 0; }
+        .top-content h1 { font-size: 48px; font-weight: 500; margin-bottom: 20px; }
+        
+        .content-container { padding: 60px 20px; }
+        .search-section { background-color: var(--box-bg); border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 40px; margin-bottom: 40px; }
+        
+        /* 2. 레이아웃 깨짐 현상 수정 */
+        .search-box-wrapper { display: flex; border: 1px solid var(--light-gray); border-radius: 6px; }
+        .search-box { 
+            padding: 24px 32px; 
+            flex-grow: 0; /* 불필요한 성장을 막음 */
+            flex-shrink: 0; /* 줄어들지 않도록 설정 */
+        }
+        .region-box { width: 28%; }
+        .status-box { width: 44%; }
+        .model-box { width: 28%; }
+        .search-box + .search-box { border-left: 1px solid var(--light-gray); }
+        .search-box h3 { font-size: 18px; margin-bottom: 20px; font-weight: bold; }
+        .region-box .select-group { margin-bottom: 20px; }
+        .region-box .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .region-box label { font-size: 14px; font-weight: bold; }
+        .ev-button { color: var(--primary-blue); font-size: 14px; text-decoration: underline; font-weight: bold; }
+        .region-box select { width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 4px; font-size: 16px; -webkit-appearance: none; appearance: none; background: var(--box-bg) url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23767676%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E') no-repeat right 12px center; background-size: 12px; }
+        .tabs { display: flex; border-bottom: 1px solid var(--light-gray); }
+        .tabs button { flex: 1; padding: 12px 0; font-size: 15px; color: var(--medium-gray); font-weight: bold; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; }
+        .tabs button.active { color: var(--primary-blue); border-bottom-color: var(--primary-blue); }
+        #statusChart { margin: 20px 0; }
+        .count { text-align: right; font-size: 14px; color: var(--medium-gray); }
+        .count strong { font-size: 24px; color: var(--primary-blue); margin: 0 5px; font-weight: bold; }
+        .model-box { display: flex; flex-direction: column; justify-content: space-between; }
+        .model-placeholder { border: 2px dashed var(--light-gray); border-radius: 6px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--medium-gray); padding: 20px; margin-bottom: 20px; }
+        .model-icon { color: var(--medium-gray); margin-bottom: 15px; }
+        .select-model-btn { width: 100%; background-color: var(--primary-blue); color: white; padding: 15px 0; font-size: 16px; font-weight: bold; border-radius: 4px; transition: background-color 0.2s; }
+        .select-model-btn:hover { background-color: #001a39; }
+        .main-info { margin-top: 20px; font-size: 13px; color: var(--medium-gray); line-height: 1.6; }
+        .result-section { background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .result-title { font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        .result-box { background-color: #f5f5f5; padding: 40px; text-align: center; color: var(--medium-gray); border-radius: 6px; margin-bottom: 20px; }
+        .disclaimer { font-size: 13px; color: var(--medium-gray); list-style-type: none; }
+        .disclaimer li { position: relative; padding-left: 10px; margin-bottom: 8px; }
+        .disclaimer li::before { content: '*'; position: absolute; left: 0; top: 0; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 8px; text-align: center; position: relative; }
+        .close { position: absolute; top: 10px; right: 20px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover, .close:focus { color: black; }
+
+        .info-section {
+            background-color: var(--box-bg);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .info-title { font-size: 18px; font-weight: bold; margin-bottom: 30px; }
+        .info-links-wrapper { display: flex; gap: 40px; }
+        .info-links-col { flex: 1; min-width: 200px; }
+        .info-links-col h4 { font-size: 16px; font-weight: bold; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--text-color); }
+        .info-links-col ul { display: flex; flex-direction: column; gap: 15px; }
+        .info-links-col ul a { display: flex; justify-content: space-between; align-items: center; color: var(--dark-gray); }
+        .info-links-col ul a:hover { text-decoration: underline; }
+        .external-link-icon { width: 14px; height: 14px; opacity: 0.5; }
+
+        #main-footer {
+            background-color: var(--footer-bg);
+            color: #fff;
+            padding: 50px 0;
+            font-size: 14px;
+        }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #444; }
+        .footer-top-links { display: flex; gap: 20px; font-size: 14px; flex-wrap: wrap; }
+        .footer-top-links a { color: #ccc; }
+        .footer-top-links a:hover { color: #fff; }
+        .footer-top-links b { color: #fff; }
+        .footer-right { display: flex; gap: 20px; align-items: center; }
+        .footer-socials { display: flex; gap: 15px; }
+        .footer-socials .icon { filter: invert(0.8); }
+        .footer-socials a:hover .icon { filter: invert(1); }
+        .family-site select { background-color: transparent; color: #ccc; border: 1px solid #555; padding: 8px 12px; border-radius: 4px; }
+        .family-site option { background-color: var(--footer-bg); }
+        .footer-middle { padding: 30px 0; font-size: 12px; color: #aaa; line-height: 1.8; }
+        .footer-bottom { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .award-logo { height: 40px; }
+
+        @media (max-width: 1024px) {
+            .nav-menu { gap: 20px; }
+            .search-box-wrapper { flex-direction: column; }
+            .search-box { width: 100% !important; flex-basis: auto !important; }
+            .search-box + .search-box { border-left: none; border-top: 1px solid var(--light-gray); }
+        }
+        @media (max-width: 768px) {
+            .container, .content-container { padding: 0 20px; }
+            .content-container { padding-top: 30px; padding-bottom: 30px; }
+            .nav-menu, .sticky-sub-menu { display: none; }
+            .sticky-main-menu { margin: 0 auto; }
+            .top-content h1 { font-size: 36px; }
+            .search-section, .result-section, .info-section { padding: 20px; }
+            .info-links-wrapper { flex-direction: column; }
+            .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="header-nav container">
+            <a href="#" class="logo-container">
+                <svg class="hyundai-logo-img" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path fill="#002C5F" d="M15,0C6.7,0,0,6.7,0,15s6.7,15,15,15s15-6.7,15-15S23.3,0,15,0z M15.1,21.2c-2.2,0-4.1-1.2-5.1-3.1l-0.1-0.1l-2.6-4.6 c-0.2-0.3-0.2-0.7,0-1l2.6-4.6l0.1-0.1c1-1.9,2.9-3.1,5.1-3.1c2.8,0,5.2,1.8,6,4.4h-3.1c-0.5-1.1-1.6-1.8-2.9-1.8 c-1.2,0-2.3,0.6-2.9,1.6l-0.1,0.1L9.5,15l2.6,4.6l0.1,0.1c0.6,1,1.7,1.6,2.9,1.6c1.3,0,2.4-0.8,2.9-1.8h3.1 C20.3,19.4,17.9,21.2,15.1,21.2z"/></svg>
+                <span class="hyundai-logo-text">HYUNDAI</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#">모델</a></li>
+                <li><a href="#">구매/이벤트</a></li>
+                <li><a href="#">서비스/멤버십</a></li>
+                <li><a href="#">디지털/고객지원</a></li>
+                <li><a href="#">브랜드</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="sticky-header-content container">
+                <h2 class="sticky-main-menu">구매</h2>
+                <div class="sticky-separator"></div>
+                <ul class="sticky-sub-menu">
+                    <li><a href="#">내 차 만들기(견적)</a></li>
+                    <li><a href="#">구매상담신청</a></li>
+                    <li><a href="#">카탈로그/가격표</a></li>
+                    <li><a href="#" class="active">전기/수소차 구매보조금 조회</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="top-banner-wrapper">
+            <div class="top-banner-content container">
+                <ul class="path">
+                    <li><a href="#">홈</a></li>
+                    <li><a href="#">구매/이벤트</a></li>
+                    <li><a href="#">구매</a></li>
+                    <li><a href="#">전기/수소차 구매보조금 조회</a></li>
+                </ul>
+                 <div class="top-content">
+                    <h1>전기/수소차 구매보조금 조회</h1>
+                    <p>2025년 전기차, 수소차 구매보조금을 조회해보세요.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-container container">
+            <section class="search-section">
+                <div class="search-box-wrapper">
+                    <div class="search-box region-box">
+                        <h3>구매 지역을 선택하세요.</h3>
+                        <div class="select-group">
+                            <div class="label-row">
+                                <label for="city-select">시/도</label>
+                                <button class="ev-button" onclick="openModal()">EV FESTA 확인하기</button>
+                            </div>
+                            <select id="city-select" name="city"><option>서울</option></select>
+                        </div>
+                        <div class="select-group">
+                            <label for="district-select">시/군/구</label>
+                            <select id="district-select" name="district"><option>서울특별시</option></select>
+                        </div>
+                    </div>
+                    <div class="search-box status-box">
+                        <h3>지급 현황</h3>
+                        <div class="tabs">
+                            <button class="active" onclick="updateChart('ev', this)">전기차</button>
+                            <button onclick="updateChart('hydrogen', this)">수소차</button>
+                            <button onclick="updateChart('freight', this)">전기화물</button>
+                        </div>
+                        <canvas id="statusChart" height="200"></canvas>
+                        <p class="count">
+                            잔여 대수 <small>(출고 기준)</small> <strong id="remainCount"></strong> <span id="score"></span>
+                        </p>
+                    </div>
+                    <div class="search-box model-box">
+                        <h3>모델을 선택하세요.</h3>
+                        <div class="model-placeholder">
+                            <div class="model-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 9.55V6.85C18.5 5.23 17.7 4 16.02 4H7.98C6.3 4 5.5 5.23 5.5 6.85V9.55C4.34 9.84 3.5 10.91 3.5 12.21V15.33C3.5 16.29 4.29 17.08 5.25 17.08C5.31 17.08 5.38 17.08 5.44 17.07C5.87 18.24 7.01 19.13 8.33 19.13C9.65 19.13 10.79 18.24 11.22 17.07H12.78C13.21 18.24 14.35 19.13 15.67 19.13C16.99 19.13 18.13 18.24 18.56 17.07C18.62 17.08 18.69 17.08 18.75 17.08C19.71 17.08 20.5 16.29 20.5 15.33V12.21C20.5 10.91 19.66 9.84 18.5 9.55ZM7 7.15C7 6.53 7.42 6 7.98 6H16.02C16.58 6 17 6.53 17 7.15V9H7V7.15ZM8.33 17.63C7.81 17.63 7.38 17.2 7.38 16.68C7.38 16.16 7.81 15.73 8.33 15.73C8.85 15.73 9.28 16.16 9.28 16.68C9.28 17.2 8.85 17.63 8.33 17.63ZM15.67 17.63C15.15 17.63 14.72 17.2 14.72 16.68C14.72 16.16 15.15 15.73 15.67 15.73C16.19 15.73 16.62 16.16 16.62 16.68C16.62 17.2 16.19 17.63 15.67 17.63ZM5 15V12.5C5 11.67 5.67 11 6.5 11H17.5C18.33 11 19 11.67 19 12.5V15H5Z" fill="#767676"/></svg>
+                            </div>
+                            <p>찾으시는 모델을 선택해 주세요.</p>
+                        </div>
+                        <button class="select-model-btn">선택하기</button>
+                    </div>
+                </div>
+                <div class="main-info">
+                    <p>* 지금 현황은 환경부 무공해차 통합 누리집의 민간구매 대상 중 '일반 구매' 기준으로 표기 됩니다.</p>
+                    <p>* 조회 일시에 따라 보조금 지급 현황과 가격정보가 실제 데이터와 차이가 있을 수 있습니다. 자세한 사항은 관련 지자체로 문의하세요.</p>
+                </div>
+            </section>
+            
+            <section class="result-section">
+                <h2 class="result-title">조회 결과</h2>
+                <div class="result-box">검색조건을 선택해 주세요.</div>
+                <ul class="disclaimer">
+                    <li>조회 일시에 따라 보조금 지급 현황과 가격정보가 실제 데이터와 차이가 있을 수 있습니다. 자세한 사항은 관련 지자체로 문의하세요.</li>
+                </ul>
+            </section>
+            <section class="result-section">
+                <h2 class="result-title">보조금 조회 이력</h2>
+                <div class="result-box">보조금 조회 내역이 없습니다.</div>
+                <ul class="disclaimer">
+                    <li>조회 이력은 최대 10개까지 제공됩니다.</li>
+                </ul>
+            </section>
+
+            <section class="info-section">
+                <h3 class="info-title">기업정보·IR정보·지속가능경영</h3>
+                <div class="info-links-wrapper">
+                    <div class="info-links-col">
+                        <h4>기업정보</h4>
+                        <ul>
+                            <li><a href="#"><span>기업이념</span></a></li>
+                            <li><a href="#"><span>연혁</span></a></li>
+                            <li><a href="#"><span>주요관계사</span></a></li>
+                            <li><a href="#"><span>CI</span></a></li>
+                            <li><a href="#"><span>수상내역</span></a></li>
+                            <li><a href="#"><span>인재채용</span> <svg class="external-link-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6v2h2.59L5 15.59L6.41 17L14 9.41V12h2V6h-6Z"></path></svg></a></li>
+                        </ul>
+                    </div>
+                    <div class="info-links-col">
+                        <h4>IR 정보</h4>
+                        <ul>
+                            <li><a href="#"><span>IR 정보</span> <svg class="external-link-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6v2h2.59L5 15.59L6.41 17L14 9.41V12h2V6h-6Z"></path></svg></a></li>
+                            <li><a href="#"><span>배당조회</span> <svg class="external-link-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6v2h2.59L5 15.59L6.41 17L14 9.41V12h2V6h-6Z"></path></svg></a></li>
+                        </ul>
+                    </div>
+                    <div class="info-links-col">
+                        <h4>지속가능경영</h4>
+                        <ul>
+                            <li><a href="#"><span>지속가능경영</span></a></li>
+                            <li><a href="#"><span>CSV 소개</span></a></li>
+                            <li><a href="#"><span>지속가능성보고서</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-top-links">
+                    <a href="#">모바일 App</a>
+                    <a href="#"><b>개인정보 처리방침</b></a>
+                    <a href="#">이용약관</a>
+                    <a href="#">프라이버시 센터</a>
+                    <a href="#">사이트맵</a>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-socials">
+                        <a href="#"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2.5A9.54 9.54 0 0 0 2.5 12.04a9.54 9.54 0 0 0 9.54 9.54c2.43 0 4.68-.92 6.4-2.49l-2.4-2.4a5.52 5.52 0 0 1-4 1.59c-3.03 0-5.5-2.47-5.5-5.5s2.47-5.5 5.5-5.5c1.36 0 2.6.49 3.57 1.3l-2.17 2.1h6.6V2.5l-2.06 2.06A9.48 9.48 0 0 0 12.04 2.5Z"></path></svg></a>
+                        <a href="#"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6a3.6 3.6 0 0 0-3.6-3.6H7.6m8.45 2.3a1.44 1.44 0 1 0 0 2.88a1.44 1.44 0 0 0 0-2.88M12 6.8a5.2 5.2 0 1 0 0 10.4a5.2 5.2 0 0 0 0-10.4M12 8.8a3.2 3.2 0 1 1 0 6.4a3.2 3.2 0 0 1 0-6.4"></path></svg></a>
+                        <a href="#"><svg class="icon" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96c0 4.84 3.44 8.87 8.05 9.8v-7H7.64v-2.8h2.45V9.6c0-2.42 1.47-3.75 3.65-3.75c1.05 0 1.95.08 2.22.11v2.5h-1.48c-1.18 0-1.4.56-1.4 1.37v1.82h2.78l-.36 2.8H13.1v7c4.61-.93 8.05-4.96 8.05-9.8C21.96 6.5 17.5 2.04 12 2.04Z"></path></svg></a>
+                    </div>
+                    <div class="family-site">
+                        <select><option>Family Site</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-middle">
+                <p>고객센터 : 080-600-6000</p>
+                <p>COPYRIGHT HYUNDAI MOTOR COMPANY. ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-bottom">
+                <img class="award-logo" src="https://www.hyundai.com/static/images/common/logo-good-design.png" alt="Good Design Award">
+                <img class="award-logo" src="https://www.hyundai.com/static/images/common/logo-reddot-design.png" alt="Reddot Design Award">
+                <img class="award-logo" src="https://www.hyundai.com/static/images/common/logo-idea-design.png" alt="IDEA Design Award">
+            </div>
+        </div>
+    </footer>
+
+    <div id="evModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>EV FESTA 정보 팝업입니다.</p>
+        </div>
+    </div>
+    
+    <script>
+        function openModal() { document.getElementById('evModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('evModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            const modal = document.getElementById('evModal');
+            if (event.target === modal) { modal.style.display = 'none'; }
+        }
+
+        let chart;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('main-header');
+            const scrollProgressBar = document.querySelector('.scroll-progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('sticky');
+                } else {
+                    header.classList.remove('sticky');
+                }
+
+                const scrollTop = document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollProgress = (scrollTop / scrollHeight) * 100;
+                scrollProgressBar.style.width = scrollProgress + '%';
+            });
+
+            const ctx = document.getElementById('statusChart').getContext('2d');
+            const chartData = {
+                ev: { labels: ['공고', '접수', '출고'], data: [9174, 4115, 3407], remain: '5,767', score: '(5,059)' },
+                hydrogen: { labels: ['공고', '접수', '출고'], data: [144, 86, 46], remain: '98', score: '(58)' },
+                freight: { labels: ['공고', '접수', '출고'], data: [1000, 73, 64], remain: '936', score: '(927)' }
+            };
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.ev.labels,
+                    datasets: [{
+                        label: '대수',
+                        data: chartData.ev.data,
+                        backgroundColor: ['#eac7cf', '#996633', '#003366']
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            afterFit: function(scaleInstance) { scaleInstance.width = 60; }
+                        }
+                    },
+                    animation: { duration: 400 }
+                }
+            });
+
+            window.updateChart = function(type, clickedButton) {
+                let newMax, newStepSize;
+                if (type === 'hydrogen') {
+                    newMax = 160; newStepSize = 40;
+                } else if (type === 'freight') {
+                    newMax = 1200; newStepSize = 300;
+                } else {
+                    const maxValue = Math.max(...chartData.ev.data);
+                    newMax = Math.ceil(maxValue / 2000) * 2000;
+                    newStepSize = newMax / 4;
+                }
+
+                chart.options.scales.y.max = newMax;
+                chart.options.scales.y.ticks.stepSize = newStepSize;
+                chart.data.datasets[0].data = chartData[type].data;
+                chart.update();
+
+                document.getElementById('remainCount').textContent = chartData[type].remain;
+                document.getElementById('score').textContent = chartData[type].score;
+
+                document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+                clickedButton.classList.add('active');
+            }
+            
+            updateChart('ev', document.querySelector('.tabs button.active'));
+        });
+    </script>
+</body>
+</html>
